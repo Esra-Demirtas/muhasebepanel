@@ -18,6 +18,14 @@
                     <i class="ri-home-heart-line"></i> <span data-key="t-landing">Anasayfa</span>
                 </a>
             </li>
+
+            <li class="menu-title"><span data-key="t-menu">HASTA YÖNETİMİ</span></li>
+            <li class="nav-item">
+                <a class="nav-link menu-link" href="<?=base_url("patient_table") ?>">
+                    <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Hasta Listesi</span>
+                </a>
+            </li>
+
         </ul>
     </div>
     <!-- Sidebar -->

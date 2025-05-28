@@ -70183,7 +70183,7 @@ span.flatpickr-weekday {
 }
 
 .auth-bg-cover {
-    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(255,0,0,1) 55%);
+    background: radial-gradient(circle,rgba(106, 76, 156, 1) 0%, rgba(0, 133, 202, 1) 100%);
 }
 .auth-bg-cover > .bg-overlay {
     background-image: url("../images/cover-pattern.png");

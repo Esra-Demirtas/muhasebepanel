@@ -66,8 +66,6 @@
             <?php $this->load->view("includes/header_parts/notification"); ?>
             <?php $this->load->view("includes/header_parts/user_information"); ?>
 
-
-
         </div>
     </div>
 </div>
