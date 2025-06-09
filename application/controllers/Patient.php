@@ -73,7 +73,7 @@ class Patient extends CI_Controller
         if ($insert){
             $alert = array(
                 "title" => "Başarılı",
-                "text" => 'Personel Başarılı Şekilde Eklendi.',
+                "text" => 'Hasta Kaydı Başarılı Şekilde Eklendi.',
                 "type"  => "success"
             );
             $this->session->set_flashdata("alert", $alert);
@@ -143,6 +143,34 @@ class Patient extends CI_Controller
             $this->session->set_flashdata("alert", $alert);
             redirect(base_url("Patient"));
         }
+    }
+
+    public function delete($uniq_id){
+
+        $this->load->model('General_model');
+
+        $delete = $this->General_model->delete(
+            'patient_table',
+            array("uniq_id" => $uniq_id)
+        );
+
+        if ($delete){
+            $alert = array(
+                "title" => "Başarılı",
+                "text" => 'Hasta Kaydı Başarılı Şekilde Silindi.',
+                "type"  => "success"
+            );
+            $this->session->set_flashdata("alert", $alert);
+            redirect(base_url("Patient"));
+        }else{
+            $alert = array(
+                "title" => "Hata ile karşılaşıldı",
+                "text" => $this->upload->display_errors(),
+                "type"  => "error"
+            );
+            $this->session->set_flashdata("alert", $alert);
+            redirect(base_url("Patient"));
+        }
 
     }
     public function getPatients()
@@ -150,8 +178,6 @@ class Patient extends CI_Controller
         $limit = $this->input->post("length");
         $start = $this->input->post("start");
         $search = $this->input->post("search[value]");
-        // $allData değişkenine ihtiyacınız kalmadı, DataTables -1 length gönderir.
-        // $allData = $this->input->post("allData");
 
         $this->load->model("General_model");
 
@@ -173,23 +199,19 @@ class Patient extends CI_Controller
         } else {
             $totalFiltered = $totalData;
         }
-
-        // DataTables 'Tümü' seçildiğinde veya Excel dışa aktarımı için -1 gönderir.
-        // Bu durumda limit ve start'ı null yaparak tüm veriyi çekiyoruz.
+        
         if ($limit == -1) {
             $limit = null;
-            $start = null; // Start'ı da sıfırlamak önemli
+            $start = null; 
         }
 
-        // get_patients model metodunuzun bu limit ve start parametrelerini doğru işlediğinden emin olun.
-        // Eğer where koşulu varsa, filtreli veriyi çekin. Yoksa tüm veriyi.
         $data = $this->General_model->get_patients($where, "uniq_id DESC", $limit, $start);
 
 
         $result = array();
         foreach ($data as $item) {
             $result[] = array(
-                $item->id, // Bu id sütunu HTML'de gösterilmiyor ama PHP tarafında diziye ekleniyor, bu sorun değil.
+                $item->id, 
                 $item->uniq_id,
                 $item->name . ' ' . $item->surname,
                 $item->identity_no,
@@ -224,81 +246,5 @@ class Patient extends CI_Controller
             "data" => $result
         ));
     }
-    /*public function getPatients()
-    {
-        $limit = $this->input->post("length");
-        $start = $this->input->post("start");
-        $search = $this->input->post("search[value]");
-        $allData = $this->input->post("allData");
 
-        $this->load->model("General_model");
-
-        $totalData = $this->General_model->count_all("patient_table");
-
-        $columns = $this->General_model->get_table_columns("patient_table");
-
-        $where = "";
-        if (!empty($search) && !empty($columns)) {
-            $searchConditions = [];
-            foreach ($columns as $column) {
-                $searchConditions[] = "$column LIKE '%" . $this->db->escape_like_str($search) . "%'";
-            }
-            $where = "(" . implode(" OR ", $searchConditions) . ")";
-        }
-
-        if (!empty($where)) {
-            $totalFiltered = $this->General_model->count_filtered("patient_table", $where);
-        } else {
-            $totalFiltered = $totalData;
-        }
-
-
-        if ($limit == -1) {
-            $limit = null;
-        }
-
-        if ($allData) {
-            $data = $this->General_model->get_patients($where, "uniq_id DESC", null, null);
-        } else {
-            $data = $this->General_model->get_patients($where, "uniq_id DESC", $limit, $start);
-        }
-
-        $result = array();
-        foreach ($data as $item) {
-            $result[] = array(
-                $item->id,
-                $item->uniq_id,
-                $item->name . ' ' . $item->surname,
-                $item->identity_no,
-                $item->gender,
-                date('d-m-Y', strtotime($item->birth_date)),
-                isset($item->phone) ? $item->phone : '---',
-                '<a href="' . base_url("patient/folder/" . $item->uniq_id) . '" class="btn btn-sm btn-primary btn-label rounded-pill">
-            <i class="ri-folder-2-fill label-icon align-middle rounded-pill fs-16 me-2"></i>Dosyası</a>',
-                '<div class="dropdown d-inline-block">
-            <button class="btn btn-soft-primary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="ri-more-fill align-middle"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a href="' . base_url("patient/update/" . $item->uniq_id) . '" class="dropdown-item edit-item-btn">
-                    <i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Düzenle</a></li>
-                <li class="text-danger">
-                    <button data-deleteurl="' . base_url("patient/delete/" . $item->uniq_id) . '"
-                        class="dropdown-item remove-item-btn deletebtn">
-                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Sil
-                    </button>
-                </li>
-            </ul>
-        </div>'
-            );
-        }
-
-        echo json_encode(array(
-            "draw" => intval($this->input->post("draw")),
-            "recordsTotal" => $totalData,
-            "recordsFiltered" => $totalFiltered,
-            "data" => $result
-        ));
-
-    }*/
 }
