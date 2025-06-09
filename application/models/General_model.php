@@ -47,4 +47,42 @@ class General_model extends CI_Model
         return $this->db->where($where)->delete($tableName);
     }
 
+    public function get_limit($tableName = '', $where = array(), $order = "id ASC", $limit = 4)
+    {
+        return $this->db->where($where)->order_by($order)->limit($limit)->get($tableName)->result();
+    }
+
+
+    public function count_all($tableName = '')
+    {
+        return $this->db->count_all($tableName);
+    }
+
+    public function count_filtered($tableName = '', $where = array())
+    {
+        $this->db->where($where);
+        return $this->db->count_all_results($tableName);
+    }
+
+    public function get_patients($where = [], $order_by = 'uniq_id DESC', $limit = 10, $start = 0)
+    {
+        $this->db->select('*');
+        $this->db->from('patient_table');
+
+        if (!empty($where)) {
+            $this->db->where($where);
+        }
+
+        $this->db->order_by($order_by);
+        $this->db->limit($limit, $start);
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_table_columns($table)
+    {
+        return $this->db->list_fields($table);
+    }
+
 }

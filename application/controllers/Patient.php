@@ -1,0 +1,304 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Patient extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('General_model');
+
+        if (!$this->session->userdata('users_info')){
+            redirect(base_url('login'));
+        }
+
+        date_default_timezone_set('Europe/Istanbul');
+    }
+    public function index()
+    {
+        $viewData = new stdClass();
+        $viewData->viewFolder = "patient_v";
+        $viewData->subViewFolder = "patient_list_v";
+        $viewData->patientsData = $this->General_model->get_all(
+            'patient_table',
+            array()
+        );
+
+        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+
+    }
+
+    public function folder($patient_id)
+    {
+        $viewData = new stdClass();
+        $viewData->viewFolder = "patient_v";
+        $viewData->subViewFolder = "patient_folder_v";
+
+        $this->load->model('General_model');
+
+        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+    }
+
+    public function add(){
+        $viewData = new stdClass();
+        $viewData->viewFolder = "patient_v";
+        $viewData->subViewFolder = "patient_add_v";
+
+        $this->load->model('General_model');
+
+        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+    }
+
+    public function addForm(){
+        $this->load->helper('string');
+
+        $this->load->model('General_model');
+        $insert = $this->General_model->add(
+            'patient_table',
+            array(
+                "uniq_id"           => random_string('nozero',7),
+                "name"              => strip_tags(trim($this->input->post("name"))),
+                "surname"           => strip_tags(trim($this->input->post("surname"))),
+                "identity_no"           => strip_tags(trim($this->input->post("identity_no"))),
+                "gender"              => (int) $this->input->post("gender"),
+                "birth_date"     => strip_tags(trim($this->input->post("birth_date"))),
+                'phone'    => strip_tags(trim($this->input->post("phone"))),
+                "email"                => strip_tags(trim($this->input->post("email"))),
+                "reason_for_visit"         => strip_tags(trim($this->input->post("reason_for_visit"))),
+                "notes"        => strip_tags(trim($this->input->post("notes"))),
+                "created_at"     => date("Y-m-d H:i:s"),
+            )
+        );
+
+        if ($insert){
+            $alert = array(
+                "title" => "Başarılı",
+                "text" => 'Personel Başarılı Şekilde Eklendi.',
+                "type"  => "success"
+            );
+            $this->session->set_flashdata("alert", $alert);
+            redirect(base_url("Patient"));
+        }else{
+            $alert = array(
+                "title" => "Hata ile karşılaşıldı",
+                "text" => $this->upload->display_errors(),
+                "type"  => "error"
+            );
+            $this->session->set_flashdata("alert", $alert);
+            redirect(base_url("Patient"));
+        }
+
+    }
+
+    public function update($uniq_id){
+        $viewData = new stdClass();
+        $viewData->viewFolder = "patient_v";
+        $viewData->subViewFolder = "patient_update_v";
+
+        $this->load->model('General_model');
+
+        $viewData->patientData = $this->General_model->get(
+            'patient_table',
+            array("uniq_id" => $uniq_id)
+        );
+
+        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+    }
+
+    public function updateForm($uniq_id){
+        $this->load->helper('string');
+
+        $this->load->model('General_model');
+        $insert = $this->General_model->update(
+            'patient_table',
+            array('uniq_id' => $uniq_id),
+            array(
+                "name"              => strip_tags(trim($this->input->post("name"))),
+                "surname"           => strip_tags(trim($this->input->post("surname"))),
+                "identity_no"           => strip_tags(trim($this->input->post("identity_no"))),
+                "gender"              => (int) $this->input->post("gender"),
+                "birth_date"     => strip_tags(trim($this->input->post("birth_date"))),
+                'phone'    => strip_tags(trim($this->input->post("phone"))),
+                "email"                => strip_tags(trim($this->input->post("email"))),
+                "reason_for_visit"         => strip_tags(trim($this->input->post("reason_for_visit"))),
+                "notes"        => strip_tags(trim($this->input->post("notes"))),
+                "updated_at"     => date("Y-m-d H:i:s"),
+            )
+        );
+
+        if ($insert){
+            $alert = array(
+                "title" => "Başarılı",
+                "text" => 'Hasta Kaydı Başarılı Şekilde Güncellendi.',
+                "type"  => "success"
+            );
+            $this->session->set_flashdata("alert", $alert);
+            redirect(base_url("Patient"));
+        }else{
+            $alert = array(
+                "title" => "Hata ile karşılaşıldı",
+                "text" => $this->upload->display_errors(),
+                "type"  => "error"
+            );
+            $this->session->set_flashdata("alert", $alert);
+            redirect(base_url("Patient"));
+        }
+
+    }
+    public function getPatients()
+    {
+        $limit = $this->input->post("length");
+        $start = $this->input->post("start");
+        $search = $this->input->post("search[value]");
+        // $allData değişkenine ihtiyacınız kalmadı, DataTables -1 length gönderir.
+        // $allData = $this->input->post("allData");
+
+        $this->load->model("General_model");
+
+        $totalData = $this->General_model->count_all("patient_table");
+
+        $columns = $this->General_model->get_table_columns("patient_table");
+
+        $where = "";
+        if (!empty($search) && !empty($columns)) {
+            $searchConditions = [];
+            foreach ($columns as $column) {
+                $searchConditions[] = "$column LIKE '%" . $this->db->escape_like_str($search) . "%'";
+            }
+            $where = "(" . implode(" OR ", $searchConditions) . ")";
+        }
+
+        if (!empty($where)) {
+            $totalFiltered = $this->General_model->count_filtered("patient_table", $where);
+        } else {
+            $totalFiltered = $totalData;
+        }
+
+        // DataTables 'Tümü' seçildiğinde veya Excel dışa aktarımı için -1 gönderir.
+        // Bu durumda limit ve start'ı null yaparak tüm veriyi çekiyoruz.
+        if ($limit == -1) {
+            $limit = null;
+            $start = null; // Start'ı da sıfırlamak önemli
+        }
+
+        // get_patients model metodunuzun bu limit ve start parametrelerini doğru işlediğinden emin olun.
+        // Eğer where koşulu varsa, filtreli veriyi çekin. Yoksa tüm veriyi.
+        $data = $this->General_model->get_patients($where, "uniq_id DESC", $limit, $start);
+
+
+        $result = array();
+        foreach ($data as $item) {
+            $result[] = array(
+                $item->id, // Bu id sütunu HTML'de gösterilmiyor ama PHP tarafında diziye ekleniyor, bu sorun değil.
+                $item->uniq_id,
+                $item->name . ' ' . $item->surname,
+                $item->identity_no,
+                $item->gender,
+                date('d-m-Y', strtotime($item->birth_date)),
+                isset($item->phone) ? $item->phone : '---',
+                '<a href="' . base_url("patient/folder/" . $item->uniq_id) . '" class="btn btn-sm btn-primary btn-label rounded-pill">
+                <i class="ri-folder-2-fill label-icon align-middle rounded-pill fs-16 me-2"></i>Dosyası
+            </a>',
+                '<div class="dropdown d-inline-block">
+                <button class="btn btn-soft-primary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ri-more-fill align-middle"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a href="' . base_url("patient/update/" . $item->uniq_id) . '" class="dropdown-item edit-item-btn">
+                        <i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Düzenle</a></li>
+                    <li class="text-danger">
+                        <button data-deleteurl="' . base_url("patient/delete/" . $item->uniq_id) . '"
+                            class="dropdown-item remove-item-btn deletebtn">
+                            <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Sil
+                        </button>
+                    </li>
+                </ul>
+            </div>'
+            );
+        }
+
+        echo json_encode(array(
+            "draw" => intval($this->input->post("draw")),
+            "recordsTotal" => $totalData,
+            "recordsFiltered" => $totalFiltered,
+            "data" => $result
+        ));
+    }
+    /*public function getPatients()
+    {
+        $limit = $this->input->post("length");
+        $start = $this->input->post("start");
+        $search = $this->input->post("search[value]");
+        $allData = $this->input->post("allData");
+
+        $this->load->model("General_model");
+
+        $totalData = $this->General_model->count_all("patient_table");
+
+        $columns = $this->General_model->get_table_columns("patient_table");
+
+        $where = "";
+        if (!empty($search) && !empty($columns)) {
+            $searchConditions = [];
+            foreach ($columns as $column) {
+                $searchConditions[] = "$column LIKE '%" . $this->db->escape_like_str($search) . "%'";
+            }
+            $where = "(" . implode(" OR ", $searchConditions) . ")";
+        }
+
+        if (!empty($where)) {
+            $totalFiltered = $this->General_model->count_filtered("patient_table", $where);
+        } else {
+            $totalFiltered = $totalData;
+        }
+
+
+        if ($limit == -1) {
+            $limit = null;
+        }
+
+        if ($allData) {
+            $data = $this->General_model->get_patients($where, "uniq_id DESC", null, null);
+        } else {
+            $data = $this->General_model->get_patients($where, "uniq_id DESC", $limit, $start);
+        }
+
+        $result = array();
+        foreach ($data as $item) {
+            $result[] = array(
+                $item->id,
+                $item->uniq_id,
+                $item->name . ' ' . $item->surname,
+                $item->identity_no,
+                $item->gender,
+                date('d-m-Y', strtotime($item->birth_date)),
+                isset($item->phone) ? $item->phone : '---',
+                '<a href="' . base_url("patient/folder/" . $item->uniq_id) . '" class="btn btn-sm btn-primary btn-label rounded-pill">
+            <i class="ri-folder-2-fill label-icon align-middle rounded-pill fs-16 me-2"></i>Dosyası</a>',
+                '<div class="dropdown d-inline-block">
+            <button class="btn btn-soft-primary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="ri-more-fill align-middle"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a href="' . base_url("patient/update/" . $item->uniq_id) . '" class="dropdown-item edit-item-btn">
+                    <i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Düzenle</a></li>
+                <li class="text-danger">
+                    <button data-deleteurl="' . base_url("patient/delete/" . $item->uniq_id) . '"
+                        class="dropdown-item remove-item-btn deletebtn">
+                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Sil
+                    </button>
+                </li>
+            </ul>
+        </div>'
+            );
+        }
+
+        echo json_encode(array(
+            "draw" => intval($this->input->post("draw")),
+            "recordsTotal" => $totalData,
+            "recordsFiltered" => $totalFiltered,
+            "data" => $result
+        ));
+
+    }*/
+}

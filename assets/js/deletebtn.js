@@ -1,5 +1,5 @@
 $('.deletebtn').on('click',function () {
-    var deleteUrl = $(this).data('delteurl');
+    var deleteUrl = $(this).data('deleteurl');
     Swal.fire({
         title: "Emin misin?",
         text: "Şuan bir silme işlemi yapıyorsun emin misin?",
