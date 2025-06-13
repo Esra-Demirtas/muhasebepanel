@@ -1,8 +1,8 @@
 <?php
 /**
  * Created by Esra DEMİRTAŞ.
- * Date: 9.06.2025
- * Time: 16:37
+ * Date: 13.06.2025
+ * Time: 13:07
  */
 ?>
 <!doctype html>
@@ -62,8 +62,10 @@
 <!--end back-to-top-->
 
 
+
 <!-- Theme Settings -->
 <?php $this->load->view("includes/themesettings"); ?>
+
 
 
 <?php $this->load->view("includes/include_script"); ?>

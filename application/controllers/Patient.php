@@ -36,6 +36,11 @@ class Patient extends CI_Controller
 
         $this->load->model('General_model');
 
+        $viewData->patientData = $this->General_model->get(
+            'patient_table',
+            array("uniq_id" => $patient_id),'id DESC'
+        );
+
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
@@ -245,6 +250,22 @@ class Patient extends CI_Controller
             "recordsFiltered" => $totalFiltered,
             "data" => $result
         ));
+    }
+
+    public function debitForm($patient_id)
+    {
+        /** Personele Envanter atamak için kullanılan sayfa. */
+        $viewData = new stdClass();
+        $viewData->viewFolder = "patient_v";
+        $viewData->subViewFolder = "patient_debit_page_v";
+        $this->load->model('General_model');
+
+        $viewData->patientData = $this->General_model->get(
+            'patient_table',
+            array("uniq_id" => $patient_id),'id DESC'
+        );
+
+        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
 }
