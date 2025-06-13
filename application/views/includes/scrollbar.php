@@ -25,6 +25,11 @@
                     <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Hasta Listesi</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link menu-link" href="<?=base_url("family") ?>">
+                    <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Aile Listesi</span>
+                </a>
+            </li>
 
         </ul>
     </div>

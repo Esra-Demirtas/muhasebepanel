@@ -19,60 +19,25 @@
 <script>
     $(document).ready(function () {
         // DataTable tanımı
-        var table = $('#dataTable').DataTable({
-            processing: true,
-            serverSide: true,
-            ordering: true,
-            paging: true,
-            lengthChange: true,
-            pageLength: 10,
-            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Tümü"]],
-            ajax: {
-                url: '<?= base_url("Patient/getPatients"); ?>',
-                type: 'POST',
-                data: function (d) {
-                    d.csrf_test_name = $("input[name='csrf_test_name']").val();
-                }
-            },
+        $('#coverPaymentTable').DataTable({
+            "order": [[0, 'desc']],
             language: {
-                url: "<?php echo base_url('assets/js/tr.json'); ?>",
+                url: "<?php echo base_url("assets/js/tr.json")?>",
             },
-            columns: [
-                { "data": 1 },
-                { "data": 2 },
-                { "data": 3 },
-                { "data": 4 },
-                { "data": 5 },
-                { "data": 6 },
-                { "data": 7 },
-                { "data": 8 }
-            ],
-            columnDefs: [
-                { targets: [6, 7], orderable: false }
-            ],
-            dom: '<"top"lBf>rt<"bottom"ip><"clear">',
+            dom: '<"top"lBfr>t<"bottom"ip><"clear">',  // Butonlar için düzen ekliyoruz
             buttons: [
                 {
                     extend: 'excelHtml5',
-                    text: 'Excel Olarak Dışa Aktar',
-                    title: 'Patients Data',
+                    text: 'Excel\'e Aktar',
+                    className: 'btn btn-success',
                     exportOptions: {
                         modifier: {
-                            page: 'all'
+                            page: 'current'  // Yalnızca mevcut sayfadaki verileri dışa aktarır
                         }
                     }
                 }
             ]
         });
-
-        // Excel dışa aktarma butonu
-        if ($('#exportExcelBtn').length) {
-            $('#exportExcelBtn').on('click', function() {
-                var allData = true;
-                var url = '/your_export_route?allData=' + allData;
-                window.location.href = url;
-            });
-        }
 
         // Silme butonu (sweetalert)
         $(document).on('click', '.deletebtn', function(e) {

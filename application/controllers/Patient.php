@@ -254,7 +254,6 @@ class Patient extends CI_Controller
 
     public function debitForm($patient_id)
     {
-        /** Personele Envanter atamak için kullanılan sayfa. */
         $viewData = new stdClass();
         $viewData->viewFolder = "patient_v";
         $viewData->subViewFolder = "patient_debit_page_v";
