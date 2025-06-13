@@ -19,8 +19,13 @@ class Patient extends CI_Controller
         $viewData = new stdClass();
         $viewData->viewFolder = "patient_v";
         $viewData->subViewFolder = "patient_list_v";
+
         $viewData->patientsData = $this->General_model->get_all(
             'patient_table',
+            array()
+        );
+        $viewData->familyData = $this->General_model->get_all(
+            'family_table',
             array()
         );
 
@@ -51,6 +56,11 @@ class Patient extends CI_Controller
 
         $this->load->model('General_model');
 
+        $viewData->familyData = $this->General_model->get_all(
+            'family_table',
+            array()
+        );
+
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
@@ -62,6 +72,7 @@ class Patient extends CI_Controller
             'patient_table',
             array(
                 "uniq_id"           => random_string('nozero',7),
+                "family_id"           => strip_tags(trim($this->input->post("family_id"))),
                 "name"              => strip_tags(trim($this->input->post("name"))),
                 "surname"           => strip_tags(trim($this->input->post("surname"))),
                 "identity_no"           => strip_tags(trim($this->input->post("identity_no"))),
@@ -107,6 +118,12 @@ class Patient extends CI_Controller
             array("uniq_id" => $uniq_id)
         );
 
+        $viewData->familyData = $this->General_model->get_all(
+            'family_table',
+            array()
+        );
+
+
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
@@ -118,6 +135,7 @@ class Patient extends CI_Controller
             'patient_table',
             array('uniq_id' => $uniq_id),
             array(
+                "family_id"           => strip_tags(trim($this->input->post("family_id"))),
                 "name"              => strip_tags(trim($this->input->post("name"))),
                 "surname"           => strip_tags(trim($this->input->post("surname"))),
                 "identity_no"           => strip_tags(trim($this->input->post("identity_no"))),

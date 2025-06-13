@@ -61,7 +61,20 @@
                                         echo $patient ? $patient->name . ' ' . $patient->surname : 'Bilinmiyor';
                                         ?>
                                     </td>
-                                    <td><?= $item->main_contact_id ?></td>
+                                    <td>
+                                        <?php
+                                        $patientCount = 0;
+                                        if (isset($patientData) && !empty($patientData)) {
+                                            foreach ($patientData as $data) {
+                                                if (isset($data->family_id) && $data->family_id == $item->uniq_id) {
+                                                    $patientCount++;
+                                                }
+                                            }
+                                        }
+                                        echo $patientCount;
+                                        ?>
+                                    </td>
+
                                     <td>
                                         <a href="<?= base_url("family/update/$item->uniq_id") ?>" class="btn btn-sm btn-primary">
                                             <i class="ri-pencil-fill"></i>

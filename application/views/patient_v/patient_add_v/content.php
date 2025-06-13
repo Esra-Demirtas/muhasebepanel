@@ -45,15 +45,26 @@
                     <label for="birth_date" class="form-label">Doğum Tarihi <span class="text-danger">*</span></label>
                     <input type="date" class="form-control" name="birth_date" id="birth_date">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="phone" class="form-label">Telefon Numarası</label>
                     <input type="text" class="form-control" name="phone" id="phone" placeholder="Hasta Telefonu Bilgisini Buraya Yazınız">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="email" class="form-label">E-posta Adresi</label>
                     <input type="text" class="form-control" name="email" id="email" placeholder="E-posta Adresini Buraya Yazınız">
                 </div>
-                <div class="col-md-4">
+                <div class="col-3">
+                    <div class="mb-3">
+                        <label for="family_id" class="form-label">Hastanın Bağlı Olduğu Aile</label>
+                        <select name="family_id" class="form-control select2" id="family_id">
+                            <option value="0">--Diğer--</option>
+                            <?php foreach ($familyData as $item){ ?>
+                                <option value="<?=$item->uniq_id; ?>"><?=$item->family_name; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div><!--end col-->
+                <div class="col-md-3">
                     <label class="form-label d-block">Cinsiyeti <span class="text-danger"></span></label>
                     <div class="d-flex align-items-center gap-4">
                         <!-- Erkek (0) -->

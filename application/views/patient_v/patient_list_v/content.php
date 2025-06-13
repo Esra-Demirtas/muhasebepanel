@@ -64,6 +64,7 @@
                             <th scope="col">#Benzersiz ID</th>
                             <th scope="col">Hasta Adı</th>
                             <th scope="col">TC No</th>
+                            <th scope="col">Hastanın Bağlı Olduğu Aile</th>
                             <th scope="col">Cinsiyet</th>
                             <th scope="col">Doğum Tarihi</th>
                             <th scope="col">Telefon Numarası</th>
@@ -77,7 +78,25 @@
                                 <td><?=$item->uniq_id ?></td>
                                 <td><?=$item->name . ' ' . $item->surname; ?></td>
                                 <td><?=$item->identity_no ?></td>
-                                <td><?=$item->gender ?></td>
+                                <td>
+                                    <?php
+                                    $familyName = 'Bilinmiyor';
+                                    if (!empty($familyData) && isset($item->family_id)) {
+                                        foreach ($familyData as $data) {
+                                            if ($data->uniq_id == $item->family_id) {
+                                                $familyName = $data->family_name;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    echo $familyName;
+                                    ?>
+
+                                </td>
+                                <td>
+                                    <?= isset($item->gender) ? ($item->gender == 1 ? 'Kadın' : 'Erkek') : 'Bilinmiyor' ?>
+                                </td>
+
                                 <td><?= date('d-m-Y', strtotime($item->birth_date)) ?></td>
                                 <td><?=$item->phone ?></td>
                                 <td>

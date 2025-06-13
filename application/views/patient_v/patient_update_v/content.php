@@ -46,15 +46,28 @@
                     <label for="birth_date" class="form-label">Doğum Tarihi <span class="text-danger">*</span></label>
                     <input type="date" class="form-control" name="birth_date" id="birth_date" value="<?=$patientData->birth_date ?>">
                 </div>
-                <div class="col-md-4">
-                    <label for="phone" class="form-label">Şahsi Telefonu</label>
+                <div class="col-md-3">
+                    <label for="phone" class="form-label">Telefon Numarası</label>
                     <input type="text" class="form-control" name="phone" id="phone" value="<?=$patientData->phone ?>" placeholder="Telefonu Bilgisini Buraya Yazınız">
                 </div>
                 <div class="col-md-3">
                     <label for="email" class="form-label">E-posta Adresi</label>
                     <input type="text" class="form-control" name="email" id="email" value="<?=$patientData->email ?>" placeholder="E-posta Adresini Buraya Yazınız">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="family_id" class="form-label">Hastanın Bağlı Olduğu Aile</label>
+                        <select name="family_id" class="form-select select2" id="family_id">
+                            <option value="0" <?= isset($patientData->family_id) && $patientData->family_id == 0 ? 'selected' : ''; ?>>--Diğer--</option>
+                            <?php foreach ($familyData as $item) { ?>
+                                <option value="<?= $item->uniq_id; ?>" <?= isset($patientData->family_id) && $patientData->family_id == $item->uniq_id ? 'selected' : ''; ?>>
+                                    <?= $item->family_name; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
                     <label class="form-label d-block">Cinsiyeti <span class="text-danger"></span></label>
                     <div class="d-flex align-items-center gap-4">
                         <!-- Erkek (0) -->
@@ -75,14 +88,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <label for="reason_for_visit" class="form-label">Hasta Geliş Sebebi</label>
-                    <input type="text" class="form-control" name="reason_for_visit" id="reason_for_visit" value="<?=$patientData->reason_for_visit ?>" placeholder="Hastann Geliş Sebebini Buraya Yazınız">
+                    <textarea class="form-control" name="reason_for_visit" id="reason_for_visit" placeholder="Hastanın Geliş Sebebini Buraya Yazınız"><?= $patientData->reason_for_visit ?? '' ?></textarea>
                 </div>
-                <div class="col-md-4">
+
+                <div class="col-md-12">
                     <label for="notes" class="form-label">Hasta Notu</label>
-                    <input type="text" class="form-control" name="notes" id="notes" value="<?=$patientData->notes ?>" placeholder="Hastann Notlarını Buraya Yazınız">
+                    <textarea class="form-control" name="notes" id="notes" placeholder="Hastanın Notlarını Buraya Yazınız"><?= $patientData->notes ?? '' ?></textarea>
                 </div>
+
                 <div class="col-12">
                     <div class="text-end">
                         <button type="submit" class="btn btn-primary">Hasta Kaydını Güncelle</button>
