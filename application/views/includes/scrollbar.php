@@ -30,6 +30,12 @@
                     <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Aile Listesi</span>
                 </a>
             </li>
+            <li class="menu-title"><span data-key="t-menu">DOKTOR YÖNETİMİ</span></li>
+            <li class="nav-item">
+                <a class="nav-link menu-link" href="<?=base_url("doctor") ?>">
+                    <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Doktor Listesi</span>
+                </a>
+            </li>
 
         </ul>
     </div>
