@@ -35,6 +35,28 @@ class Family extends CI_Controller
 
     }
 
+    public function folder($family_id)
+    {
+        $viewData = new stdClass();
+        $viewData->viewFolder = "family_v";
+        $viewData->subViewFolder = "family_folder_v";
+
+        $this->load->model('General_model');
+
+        $viewData->familyData = $this->General_model->get(
+            'family_table',
+            array("uniq_id" => $family_id),'id DESC'
+        );
+
+        $viewData->patientData = $this->General_model->get_all(
+            'patient_table',
+            array("family_id" => $family_id)
+        );
+
+
+        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+    }
+
     public function add(){
         $viewData = new stdClass();
         $viewData->viewFolder = "family_v";

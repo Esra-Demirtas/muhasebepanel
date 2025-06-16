@@ -25,6 +25,21 @@
                         <th class="ps-0" scope="row">E-posta :</th>
                         <td class="text-muted"><?=$patientData->email  ?></td>
                     </tr>
+                    <tr>
+                        <th class="ps-0" scope="row">Hastanın Bağlı Olduğu Aile :</th>
+                        <td class="text-muted"><?php
+                            $familyName = 'Yok';
+                            if (!empty($familyData) && isset($item->family_id)) {
+                                foreach ($familyData as $data) {
+                                    if ($data->uniq_id == $item->family_id) {
+                                        $familyName = $data->family_name;
+                                        break;
+                                    }
+                                }
+                            }
+                            echo $familyName;
+                            ?></td>
+                    </tr>
 
                     </tbody>
                 </table>

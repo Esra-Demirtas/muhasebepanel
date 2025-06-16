@@ -35,10 +35,11 @@
                         <thead class="table-light">
                         <tr>
                             <th scope="col">Benzersiz ID</th>
-                            <th>Aile Adı</th>
-                            <th>Ailenin Bağlı Olduğu Kişi</th>
-                            <th>Toplam Hasta Sayısı</th>
-                            <th>İşlemler</th>
+                            <th scope="col">Aile Adı</th>
+                            <th scope="col">Ailenin Bağlı Olduğu Kişi</th>
+                            <th scope="col">Toplam Hasta Sayısı</th>
+                            <th scope="col">Dosyası</th>
+                            <th scope="col">İşlemler</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -73,6 +74,10 @@
                                         }
                                         echo $patientCount;
                                         ?>
+                                    </td>
+
+                                    <td>
+                                        <a href="<?=base_url("family/folder/$item->uniq_id") ?>" class="btn btn-sm btn-primary btn-label rounded-pill"><i class="ri-folder-2-fill label-icon align-middle rounded-pill fs-16 me-2"></i>Dosyası</a>
                                     </td>
 
                                     <td>

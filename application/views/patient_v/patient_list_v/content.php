@@ -104,19 +104,26 @@
                                 </td>
 
                                 <td>
-                                    <div class="dropdown d-inline-block">
-                                        <button class="btn btn-soft-primary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="ri-more-fill align-middle"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end" style="">
-                                            <li><a href="<?=base_url("patient/update/$item->uniq_id") ?>" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Düzenle</a></li>
-                                            <li class="text-danger">
-                                                <button data-deleteurl="<?= base_url("patient/delete/$item->uniq_id") ?>"
-                                                        class="dropdown-item remove-item-btn deletebtn">
-                                                    <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Sil
-                                                </button>
-                                            </li>
-                                        </ul>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <a href="<?= base_url("treatment/add/$item->uniq_id") ?>" class="btn btn-soft-light btn-border" style="background-color: black">
+                                                Tedavi Ekle
+                                            </a>
+                                        </div>
+                                        <div class="dropdown d-inline-block">
+                                            <button class="btn btn-soft-primary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="ri-more-fill align-middle"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end" style="">
+                                                <li><a href="<?=base_url("patient/update/$item->uniq_id") ?>" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Düzenle</a></li>
+                                                <li class="text-danger">
+                                                    <button data-deleteurl="<?= base_url("patient/delete/$item->uniq_id") ?>"
+                                                            class="dropdown-item remove-item-btn deletebtn">
+                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Sil
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
