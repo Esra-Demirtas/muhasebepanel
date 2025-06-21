@@ -7,6 +7,7 @@ class Patient extends CI_Controller
     {
         parent::__construct();
         $this->load->model('General_model');
+        $this->load->helper('doctor');
 
         if (!$this->session->userdata('users_info')){
             redirect(base_url('login'));
@@ -44,6 +45,25 @@ class Patient extends CI_Controller
         $viewData->patientData = $this->General_model->get(
             'patient_table',
             array("uniq_id" => $patient_id),'id DESC'
+        );
+
+        $viewData->treatmentData = $this->General_model->get_all(
+            'treatment_table',
+            array(
+                'patient_id' => $patient_id
+            ),'id DESC'
+        );
+
+        $viewData->assignedTreatment= $this->General_model->get_all(
+            'treatment_table',
+            array(
+                'patient_id' => $patient_id
+            ),'id DESC'
+        );
+
+        $viewData->doctorData= $this->General_model->get_all(
+            'doctor_table',
+            array(),'name DESC'
         );
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);

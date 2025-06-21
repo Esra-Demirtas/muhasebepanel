@@ -31,20 +31,19 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1"
                     role="tablist">
-                    <!--<li class="nav-item">
-                        <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#geninfo-tab"
-                           role="tab">
-                            <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span
-                                class="d-none d-md-inline-block">Genel Dosyası</span>
-                        </a>
-                    </li>-->
                     <li class="nav-item">
                         <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#generaltab"
                            role="tab">
-                            <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span
-                                class="d-none d-md-inline-block">Genel Dosyası</span>
+                            <i class="ri-airplay-fill d-inline-block d-md-none"></i>
+                            <span class="d-none d-md-inline-block">Genel Dosyası</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                       <a class="nav-link fs-14" data-bs-toggle="tab" href="#treatmenttab" role="tab">
+                           <i class="ri-price-tag-line d-inline-block d-md-none"></i>
+                           <span class="d-none d-md-inline-block">Tedavi Planı</span>
+                       </a>
+                   </li>
                 </ul>
                 <div class="flex-shrink-0">
                     <a href="<?=base_url("Patient/update/$patientData->uniq_id") ?>" class="btn btn-success"><i
@@ -53,6 +52,7 @@
             </div>
             <div class="tab-content pt-4 text-muted">
                 <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/general_tab"); ?>
+                <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/treatment_tab"); ?>
             </div>
             <!--end tab-content-->
         </div>
