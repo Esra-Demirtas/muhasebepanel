@@ -5,7 +5,7 @@
  * Time: 18:40
  */
 ?>
-<div class="row mb-4">
+<div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
             <h4 class="mb-sm-0">Doktor Yönetim Sayfası</h4>
@@ -18,14 +18,39 @@
         </div>
     </div>
 </div>
+
+<div class="row mb-3 pb-1">
+    <div class="col-12">
+        <div class="d-flex align-items-lg-center flex-lg-row flex-column">
+            <div class="flex-grow-1">
+                <h4 class="fs-16 mb-1">Doktor Sayfası Yönetimi!</h4>
+                <p class="text-muted mb-0">Doktor kayıtlarını ve dosyalarını buradan görüntüleyebilirsiniz. </p>
+            </div>
+            <div class="mt-3 mt-lg-0">
+                <form action="javascript:void(0);">
+                    <div class="row g-3 mb-0 align-items-center">
+                        <!--end col-->
+                        <div class="col-auto">
+                            <a href="<?=base_url("doctor/add") ?>" type="button"
+                               class="btn btn-soft-success"><i class="ri-add-circle-line align-middle me-1"></i>Yeni Doktor Ekle</a>
+                        </div>
+
+                    </div>
+                    <!--end row-->
+                </form>
+            </div>
+        </div><!-- end card header -->
+    </div>
+    <!--end col-->
+</div>
+
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Doktor Listesi</h5>
-                <a href="<?= base_url("doctor/add") ?>" class="btn btn-soft-success float-end">
-                    <i class="ri-add-circle-line me-1"></i> Yeni Doktor Ekle
-                </a>
+            <div class="card-header border-0">
+                <div class="d-flex align-items-center">
+                    <h5 class="card-title mb-0 flex-grow-1">Doktor Listesi</h5>
+                </div>
             </div>
 
             <div class="card-body">
@@ -36,7 +61,7 @@
                             <th scope="col">ID</th>
                             <th>Adı</th>
                             <th>Soyadı</th>
-                            <th>Uzmanlık Alanu</th>
+                            <th>Uzmanlık Alanı</th>
                             <th>Sabit Maaş</th>
                             <th>Hakediş Oranı (%)</th>
                             <th>Aktif mi?</th>
