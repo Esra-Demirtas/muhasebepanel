@@ -48,6 +48,11 @@ class Patient extends CI_Controller
             array("uniq_id" => $patient_id),'id DESC'
         );
 
+        $viewData->familyData = $this->General_model->get_all(
+            'family_table',
+            array()
+        );
+
         $viewData->treatmentData = $this->General_model->get_all(
             'treatment_table',
             array(
