@@ -1,14 +1,14 @@
 <?php
 /**
  * Created by Esra DEMİRTAŞ.
- * Date: 16.06.2025
- * Time: 23:06
+ * Date: 23.06.2025
+ * Time: 16:17
  */
 ?>
 <script>
     $(document).ready(function() {
 
-        $('#add_treatment_form').on('submit', function (e) {
+        $('#add_income_form').on('submit', function (e) {
             e.preventDefault();
 
             var formData = new FormData(this);
@@ -38,17 +38,17 @@
                             timer: 1500
                         });
 
-                        $.post("<?php echo base_url('treatment/treatmentPatientRender/'.$patientData->uniq_id)?>", function(data) {
-                            $('#treatmentRenderTableBody').html(data);
+                        $.post("<?php echo base_url('income/incomePatientRender/'.$patientData->uniq_id)?>", function(data) {
+                            $('#incomeRenderTableBody').html(data);
                             console.log(data)
                         });
                     }
                     $('#loadingSpinner').hide();
-                    $('#addTreatmentModal').modal('hide');
+                    $('#addIncomeModal').modal('hide');
 
                     // Reset Modal Form
-                    $('#add_treatment_form')[0].reset();
-                    $('#addTreatmentModal').on('hidden.bs.modal', function () {
+                    $('#add_income_form')[0].reset();
+                    $('#addIncomeModal').on('hidden.bs.modal', function () {
                     });
                 },
                 error: function(xhr, status, error) {
@@ -57,7 +57,7 @@
             });
         });
 
-        $(document).on('submit', '#update_treatment_form', function (e) {
+        $(document).on('submit', '#update_income_form', function (e) {
             e.preventDefault();
 
             var formData = new FormData(this);
@@ -85,9 +85,9 @@
                             showConfirmButton: false
                         });
 
-                        $('#updateTreatmentModal').modal('hide');
+                        openSafeModal("#updateIncomeModal");
 
-                        $('#treatmentRenderTableBody').load("<?= base_url('treatment/treatmentPatientRender') ?>");
+                        $('#incomeRenderTableBody').load("<?= base_url('income/incomePatientRender') ?>");
                     }
                 },
                 error: function () {
@@ -100,7 +100,7 @@
             });
         });
 
-        $(document).on("submit", "#updateTreatmentForm", function (e) {
+        $(document).on("submit", "#updateIncomeForm", function (e) {
             e.preventDefault();
 
             const form = $(this);
@@ -131,12 +131,12 @@
                             timer: 1500
                         });
 
-                        $.post("<?php echo base_url('treatment/treatmentPatientRender/'.$patientData->uniq_id)?>", function(data) {
-                            $('#treatmentRenderTableBody').html(data);
+                        $.post("<?php echo base_url('income/incomePatientRender/'.$patientData->uniq_id)?>", function(data) {
+                            $('#incomeRenderTableBody').html(data);
                             console.log(data)
                         });
                     }
-                    $('#updateTreatmentModal').modal('hide');
+                    $("#updateIncomeModal").modal("hide");
                 },
                 error: function () {
                     Swal.fire({
@@ -149,7 +149,8 @@
             });
         });
 
-        $(document).on("click", ".updateTreatment", function () {
+
+        $(document).on("click", ".updateIncome", function () {
             const postUrl = $(this).data("post-url");
 
             $.ajax({
@@ -159,15 +160,15 @@
                 success: function (response) {
                     console.log(response)
                     if (response) {
-                        $("#treatment_name-update").val(response.treatment_name || "");
-                        $("#doctor_id-update").val(response.doctor_id || "");
-                        $("#treatment_price-update").val(response.treatment_price || "");
-                        $("#payment_status-update").val(response.payment_status != null ? response.payment_status.toString() : "");
-                        $("#treatment_date-update").val(response.treatment_date || "");
-                        $("#note-update").val(response.note || "");
+                        $("#treatment_id-update").val(response.treatment_id || "");
+                        $("#amount-update").val(response.amount || "");
+                        $("#payment_type-update").val(response.payment_type != null ? response.payment_type.toString() : "");
+                        $("#payment_date-update").val(response.payment_date || "");
+                        $("#description-update").val(response.description || "");
                         $("#uniq_id-update").val(response.uniq_id || "");
 
-                        $("#updateTreatmentModal").modal("show");
+                        // Modal'ı aç
+                        $("#updateIncomeModal").modal("show");
                     } else {
                         alert("Veri alınamadı!");
                     }
@@ -208,5 +209,6 @@
                 }
             });
         });
+
     });
 </script>

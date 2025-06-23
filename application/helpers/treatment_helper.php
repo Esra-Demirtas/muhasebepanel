@@ -21,3 +21,20 @@ function getTreatmentData($id)
     }
 
 }
+
+function getTreatmentName($treatment_id)
+{
+    $t = get_instance();
+    $t->load->model('General_model');
+    $data = $t->General_model->get(
+        'treatment_table',
+        array(
+            "uniq_id" => $treatment_id
+        )
+    );
+    if ($data){
+        return $data->treatment_name;
+    }else{
+        return "Veri Bulunamadı";
+    }
+}

@@ -46,8 +46,8 @@ class Treatment extends CI_Controller
 
     public function addForm($patient_id){
         $this->load->helper('string');
-
         $this->load->model('General_model');
+
         $insert = $this->General_model->add(
             'treatment_table',
             array(

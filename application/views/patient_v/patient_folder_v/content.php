@@ -44,6 +44,12 @@
                            <span class="d-none d-md-inline-block">Tedavi Planı</span>
                        </a>
                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-14" data-bs-toggle="tab" href="#incometab" role="tab">
+                            <i class="ri-price-tag-line d-inline-block d-md-none"></i>
+                            <span class="d-none d-md-inline-block">Ödeme İşlemleri</span>
+                        </a>
+                    </li>
                 </ul>
                 <div class="flex-shrink-0">
                     <a href="<?=base_url("Patient/update/$patientData->uniq_id") ?>" class="btn btn-success"><i
@@ -53,6 +59,7 @@
             <div class="tab-content pt-4 text-muted">
                 <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/general_tab"); ?>
                 <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/treatment_tab"); ?>
+                <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/income_tab"); ?>
             </div>
             <!--end tab-content-->
         </div>

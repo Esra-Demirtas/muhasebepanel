@@ -70,7 +70,15 @@
 <?php $this->load->view("{$viewFolder}/{$subViewFolder}/viewLibrary/script"); ?>
 
 <?php $this->load->view("{$viewFolder}/{$subViewFolder}/viewLibrary/treatment_script"); ?>
+<?php $this->load->view("{$viewFolder}/{$subViewFolder}/viewLibrary/income_script"); ?>
+<?php $this->load->view("{$viewFolder}/{$subViewFolder}/income_update_modal"); ?>
+<?php $this->load->view("{$viewFolder}/{$subViewFolder}/treatment_update_modal"); ?>
+<?php $this->load->view("{$viewFolder}/{$subViewFolder}/income_add_modal"); ?>
 <?php $this->load->view("{$viewFolder}/{$subViewFolder}/treatment_add_modal"); ?>
+
+
+
+
 
 </body>
 

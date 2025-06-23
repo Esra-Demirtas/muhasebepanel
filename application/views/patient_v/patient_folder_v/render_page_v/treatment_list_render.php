@@ -53,10 +53,10 @@
             <td><?= !empty($item->note) ? $item->note : 'Belirtilmedi' ?></td>
 
             <td>
-                <!--<button data-post-url="<?php /*echo base_url("treatment/getTreatmentsDetail/$item->uniq_id") */?>"
-                        class="btn btn-sm btn-primary updateBtn">
+                <button data-post-url="<?php echo base_url("treatment/getTreatmentsDetail/$item->uniq_id") ?>"
+                        class="btn btn-sm btn-primary updateTreatment">
                     <i class="ri-pencil-fill"></i>
-                </button>-->
+                </button>
 
                 <button data-delteurl="<?= base_url("treatment/delete/$item->uniq_id") ?>" class="btn btn-sm btn-danger deletebtn">
                     <i class="ri-delete-bin-fill"></i>
