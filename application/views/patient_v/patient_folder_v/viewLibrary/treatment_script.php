@@ -57,7 +57,7 @@
             });
         });
 
-        $(document).on('submit', '#update_treatment_form', function (e) {
+        /*$(document).on('submit', '#update_treatment_form', function (e) {
             e.preventDefault();
 
             var formData = new FormData(this);
@@ -85,8 +85,6 @@
                             showConfirmButton: false
                         });
 
-                        $('#updateTreatmentModal').modal('hide');
-
                         $('#treatmentRenderTableBody').load("<?= base_url('treatment/treatmentPatientRender') ?>");
                     }
                 },
@@ -98,7 +96,7 @@
                     });
                 }
             });
-        });
+        });*/
 
         $(document).on("submit", "#updateTreatmentForm", function (e) {
             e.preventDefault();
@@ -159,13 +157,14 @@
                 success: function (response) {
                     console.log(response)
                     if (response) {
-                        $("#treatment_name-update").val(response.treatment_name || "");
-                        $("#doctor_id-update").val(response.doctor_id || "");
-                        $("#treatment_price-update").val(response.treatment_price || "");
-                        $("#payment_status-update").val(response.payment_status != null ? response.payment_status.toString() : "");
-                        $("#treatment_date-update").val(response.treatment_date || "");
-                        $("#note-update").val(response.note || "");
-                        $("#uniq_id-update").val(response.uniq_id || "");
+                        $("#treatment_treatment_name-update").val(response.treatment_name || "");
+                        $("#treatment_doctor_id-update").val(response.doctor_id || "");
+                        $("#treatment_tooth_number-update").val(response.tooth_number || "");
+                        $("#treatment_treatment_price-update").val(response.treatment_price || "");
+                        $("#treatment_payment_status-update").val(response.payment_status != null ? response.payment_status.toString() : "");
+                        $("#treatment_treatment_date-update").val(response.treatment_date || "");
+                        $("#treatment_note-update").val(response.note || "");
+                        $("#treatment_uniq_id-update").val(response.uniq_id || "");
 
                         $("#updateTreatmentModal").modal("show");
                     } else {

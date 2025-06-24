@@ -11,6 +11,7 @@
             <td><?= !empty($item->uniq_id) ? $item->uniq_id : 'Belirtilmedi' ?></td>
             <td><?= !empty($item->treatment_name) ? $item->treatment_name : 'Belirtilmedi' ?></td>
             <td><?= !empty($item->doctor_id) ? getDoctorName($item->doctor_id) : 'Belirtilmedi' ?></td>
+            <td><?= !empty($item->tooth_number) ? $item->tooth_number : 'Belirtilmedi' ?></td>
             <td>
                 <?php
                 // Tedavi Ücreti kontrolü

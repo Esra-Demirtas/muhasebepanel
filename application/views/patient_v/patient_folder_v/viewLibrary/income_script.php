@@ -5,6 +5,7 @@
  * Time: 16:17
  */
 ?>
+
 <script>
     $(document).ready(function() {
 
@@ -45,8 +46,6 @@
                     }
                     $('#loadingSpinner').hide();
                     $('#addIncomeModal').modal('hide');
-
-                    // Reset Modal Form
                     $('#add_income_form')[0].reset();
                     $('#addIncomeModal').on('hidden.bs.modal', function () {
                     });
@@ -57,7 +56,7 @@
             });
         });
 
-        $(document).on('submit', '#update_income_form', function (e) {
+       /* $(document).on('submit', '#update_income_form', function (e) {
             e.preventDefault();
 
             var formData = new FormData(this);
@@ -84,9 +83,6 @@
                             timer: 1500,
                             showConfirmButton: false
                         });
-
-                        openSafeModal("#updateIncomeModal");
-
                         $('#incomeRenderTableBody').load("<?= base_url('income/incomePatientRender') ?>");
                     }
                 },
@@ -98,7 +94,7 @@
                     });
                 }
             });
-        });
+        });*/
 
         $(document).on("submit", "#updateIncomeForm", function (e) {
             e.preventDefault();
@@ -149,7 +145,6 @@
             });
         });
 
-
         $(document).on("click", ".updateIncome", function () {
             const postUrl = $(this).data("post-url");
 
@@ -160,14 +155,13 @@
                 success: function (response) {
                     console.log(response)
                     if (response) {
-                        $("#treatment_id-update").val(response.treatment_id || "");
-                        $("#amount-update").val(response.amount || "");
-                        $("#payment_type-update").val(response.payment_type != null ? response.payment_type.toString() : "");
-                        $("#payment_date-update").val(response.payment_date || "");
-                        $("#description-update").val(response.description || "");
-                        $("#uniq_id-update").val(response.uniq_id || "");
+                        $("#income_treatment_id-update").val(response.treatment_id || "");
+                        $("#income_amount-update").val(response.amount || "");
+                        $("#income_payment_type-update").val(response.payment_type != null ? response.payment_type.toString() : "");
+                        $("#income_payment_date-update").val(response.payment_date || "");
+                        $("#income_description-update").val(response.description || "");
+                        $("#income_uniq_id-update").val(response.uniq_id || "");
 
-                        // Modal'ı aç
                         $("#updateIncomeModal").modal("show");
                     } else {
                         alert("Veri alınamadı!");
@@ -179,7 +173,6 @@
             });
         });
 
-        // Delete Item
         $(document).on('click', '.deletebtn', function(e) {
             e.preventDefault();
 
@@ -209,6 +202,6 @@
                 }
             });
         });
-
     });
+
 </script>

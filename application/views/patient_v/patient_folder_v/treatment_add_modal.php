@@ -33,6 +33,12 @@
                     </div>
 
                     <div class="col-md-6">
+                        <label for="tooth_number" class="form-label">Diş Numarası</label>
+                        <input type="text" class="form-control" name="tooth_number" id="tooth_number"
+                               placeholder="Diş Numarası" value="<?= isset($treatmentData->tooth_number) ? $treatmentData->tooth_number : '' ?>">
+                    </div>
+
+                    <div class="col-md-6">
                         <label for="treatment_price" class="form-label">Tedavi Ücreti</label>
                         <input type="number" class="form-control" name="treatment_price" id="treatment_price"
                                placeholder="Tedavi Ücreti" value="<?= isset($treatmentData->treatment_price) ? $treatmentData->treatment_price : '' ?>">

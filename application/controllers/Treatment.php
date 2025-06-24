@@ -55,6 +55,7 @@ class Treatment extends CI_Controller
                 "patient_id"              => $patient_id,
                 "doctor_id"              => strip_tags(trim($this->input->post("doctor_id"))),
                 "treatment_name"              => strip_tags(trim($this->input->post("treatment_name"))),
+                "tooth_number"              => strip_tags(trim($this->input->post("tooth_number"))),
                 "treatment_price"              => strip_tags(trim($this->input->post("treatment_price"))),
                 "payment_status"              => strip_tags(trim($this->input->post("payment_status"))),
                 "treatment_date"           => strip_tags(trim($this->input->post("treatment_date"))),
@@ -120,6 +121,7 @@ class Treatment extends CI_Controller
             array(
                 "treatment_name"              => $this->input->post("treatment_name", true),
                 "doctor_id"              => $this->input->post("doctor_id", true),
+                "tooth_number"              => $this->input->post("tooth_number", true),
                 "treatment_price"              => $this->input->post("treatment_price", true),
                 "payment_status"              => $this->input->post("payment_status", true),
                 "treatment_date"            => $this->input->post("treatment_date", true),

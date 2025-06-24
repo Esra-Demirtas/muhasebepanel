@@ -23,6 +23,7 @@
                         <th>Tedavi No</th>
                         <th>Tedavi Adı</th>
                         <th>Doktor</th>
+                        <th>Diş Numarası</th>
                         <th>Tedavi Ücreti</th>
                         <th>Tedavinin Ödeme Durumu</th>
                         <th>Tedavinin Uygulandığı Tarih</th>

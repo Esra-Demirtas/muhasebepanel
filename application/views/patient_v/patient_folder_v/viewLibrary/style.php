@@ -7,55 +7,43 @@
 ?>
 <link rel="stylesheet" href="<?=base_url("assets/css/select2.min.css") ?>">
 <style>
-    /* Genel Modal Ayarları (İsteğe Bağlı ama iyi bir başlangıç) */
-    /* Eğer modalların genel davranışında bir sorun varsa bunu kullanabilirsiniz. */
     .modal {
-        position: fixed; /* Sabit konumda kalmasını sağlar */
+        position: fixed;
         top: 0;
         left: 0;
-        z-index: 1050; /* Varsayılan Bootstrap z-index'i */
-        display: none; /* Varsayılan olarak gizli */
+        z-index: 1050;
+        display: none;
         width: 100%;
         height: 100%;
         overflow-x: hidden;
-        overflow-y: auto; /* İçerik taşarsa kaydırma çubuğu */
+        overflow-y: auto;
         outline: 0;
     }
 
-    /* Modal Arka Planı (Backdrop) Ayarları */
-    /* Bu, modalların arkasındaki karartılmış alandır. */
     .modal-backdrop {
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 1040; /* Modallardan daha düşük olmalı */
-        width: 100vw; /* Görünüm alanı genişliği */
-        height: 100vh; /* Görünüm alanı yüksekliği */
-        background-color: #000; /* Siyah renk */
-        opacity: 0.5; /* Yarım saydamlık */
+        z-index: 1040;
+        width: 100vw;
+        height: 100vh;
+        background-color: #000;
+        opacity: 0.5;
     }
 
-
-    /* income_update_modal için Ayarlar */
-    /* Bu modalınızın ID'sini doğru şekilde yazdığınızdan emin olun. */
-    #incomeUpdateModal { /* 'income_update_modal' dosyanızdaki ana modal div'inin ID'si */
-        z-index: 1060 !important; /* Diğer modallardan daha yüksek bir değer verin */
+    #incomeUpdateModal {
+        z-index: 1060 !important;
     }
 
-    /* treatment_add_modal için Ayarlar */
-    /* Bu modalınızın ID'sini doğru şekilde yazdığınızdan emin olun. */
-    #treatmentAddModal { /* 'treatment_add_modal' dosyanızdaki ana modal div'inin ID'si */
-        z-index: 1061 !important; /* Bir önceki modal olan incomeUpdateModal'dan biraz daha yüksek olsun */
+    #treatmentAddModal {
+        z-index: 1061 !important;
     }
 
-    #treatmentUpdateModal { /* 'treatment_add_modal' dosyanızdaki ana modal div'inin ID'si */
-        z-index: 1061 !important; /* Bir önceki modal olan incomeUpdateModal'dan biraz daha yüksek olsun */
+    #treatmentUpdateModal {
+        z-index: 1062 !important;
     }
 
-
-    /* income_add_modal için Ayarlar */
-    /* Bu modalınızın ID'sini doğru şekilde yazdığınızdan emin olun. */
-    #incomeAddModal { /* 'income_add_modal' dosyanızdaki ana modal div'inin ID'si */
-        z-index: 1062 !important; /* En yüksek önceliği olan bu modal olsun */
+    #incomeAddModal {
+        z-index: 1063 !important;
     }
 </style>
