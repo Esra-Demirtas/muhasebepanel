@@ -11,6 +11,7 @@
 <head>
     <?php $this->load->view("{$viewFolder}/{$subViewFolder}/viewLibrary/style"); ?>
     <?php $this->load->view("includes/head"); ?>
+    <?php $this->load->view("includes/include_style"); ?>
 </head>
 
 <body>

@@ -5,65 +5,84 @@
  * Time: 16:37
  */
 ?>
-<div class="profile-foreground position-relative mx-n4 mt-n4">
-    <div class="profile-wid-bg2">
-        <img src="" alt="" class="profile-wid-img" />
-    </div>
-</div>
-<div class="pt-4 mb-4 mb-lg-3 pb-lg-4">
-    <div class="row g-4">
 
-        <!--end col-->
-        <div class="col">
-            <div class="p-2">
-                <h3 class="text-white mb-1"><?=$patientData->name. ' ' .  $patientData->surname  ?></h3>
-            </div>
-        </div>
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
 
-    </div>
-    <!--end row-->
-</div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mt-n4 mx-n4">
+                        <div class="bg-info-subtle">
+                            <div class="card-body pb-0 px-4">
+                                <div class="row mb-3">
+                                    <div class="col-md">
+                                        <div class="row align-items-center g-3">
+                                            <div class="col-md-auto">
+                                                <div class="avatar-md">
+                                                    <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center bg-light">
+                                                        <?php if (empty($patientData->profile_image)) { ?>
+                                                            <img src="<?=base_url('assets/img/default-avatar.jpeg') ?>" alt="Varsayılan Profil Resmi" class="avatar-md rounded-circle object-fit-cover">
+                                                        <?php } else { ?>
+                                                            <img src="<?=base_url("uploads/patient_profiles/{$patientData->profile_image}") ?>" alt="Profil Resmi" class="avatar-md rounded-circle object-fit-cover">
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md">
+                                                <div>
+                                                    <h4 class="fw-bold"><?=$patientData->name. ' ' .  $patientData->surname  ?></h4>
+                                                    <div class="hstack gap-3 flex-wrap">
+                                                        <div><i class="ri-id-card-line align-bottom me-1"></i> TC No: <span class="fw-semibold"><?=$patientData->identity_no ?></span></div>
+                                                        <div class="vr"></div>
+                                                        <div><i class="ri-genderless-line align-bottom me-1"></i> Cinsiyet: <span class="fw-semibold"><?=$patientData->gender ?></span></div>
+                                                        <div class="vr"></div>
+                                                        <div><i class="ri-phone-line align-bottom me-1"></i> Tel: <span class="fw-semibold"><?=$patientData->phone ?: 'Belirtilmedi' ?></span></div>
+                                                        <div class="vr"></div>
+                                                        <div><i class="ri-calendar-line align-bottom me-1"></i> Doğum Tarihi: <span class="fw-semibold"><?=date('d-m-Y', strtotime($patientData->birth_date)) ?></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <a href="<?=base_url("Patient/update/{$patientData->uniq_id}") ?>" class="btn btn-success"><i
+                                                    class="ri-edit-box-line align-bottom"></i> Profili Düzenle</a>
+                                    </div>
+                                </div>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div>
-            <div class="d-flex">
-                <!-- Nav tabs -->
-                <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1"
-                    role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#generaltab"
-                           role="tab">
-                            <i class="ri-airplay-fill d-inline-block d-md-none"></i>
-                            <span class="d-none d-md-inline-block">Genel Dosyası</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                       <a class="nav-link fs-14" data-bs-toggle="tab" href="#treatmenttab" role="tab">
-                           <i class="ri-price-tag-line d-inline-block d-md-none"></i>
-                           <span class="d-none d-md-inline-block">Tedavi Planı</span>
-                       </a>
-                   </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-14" data-bs-toggle="tab" href="#incometab" role="tab">
-                            <i class="ri-price-tag-line d-inline-block d-md-none"></i>
-                            <span class="d-none d-md-inline-block">Ödeme İşlemleri</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="flex-shrink-0">
-                    <a href="<?=base_url("Patient/update/$patientData->uniq_id") ?>" class="btn btn-success"><i
-                            class="ri-edit-box-line align-bottom"></i> Profili Düzenle</a>
+                                <ul class="nav nav-tabs-custom border-bottom-0" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#generaltab" role="tab">
+                                            Genel Bilgiler
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#treatmenttab" role="tab">
+                                            Tedavi Planı
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#incometab" role="tab">
+                                            Ödeme İşlemleri
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="tab-content pt-4 text-muted">
-                <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/general_tab"); ?>
-                <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/treatment_tab"); ?>
-                <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/income_tab"); ?>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="tab-content text-muted">
+                            <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/general_tab"); ?>
+                            <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/treatment_tab"); ?>
+                            <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/income_tab"); ?>
+                    </div>
+                </div>
             </div>
-            <!--end tab-content-->
         </div>
     </div>
-    <!--end col-->
 </div>
-<!--end row-->

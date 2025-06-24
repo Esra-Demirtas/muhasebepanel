@@ -23,8 +23,8 @@
     <!-- ========== App Menu ========== -->
     <div class="app-menu navbar-menu">
         <!-- LOGO -->
-        <?php $this->load->view("includes/navbar"); ?>
-        <?php $this->load->view("includes/scrollbar"); ?>
+          
+           <?php $this->load->view("includes/appmenu"); ?>
     </div>
     <!-- Left Sidebar End -->
     <!-- Vertical Overlay-->

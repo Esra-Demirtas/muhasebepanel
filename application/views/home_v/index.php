@@ -8,12 +8,13 @@
 
 <!doctype html>
 
-<html lang="tr" data-layout="vertical" data-topbar="light" data-sidebar="<?=isset($_SESSION['darkMode']) ? $_SESSION['darkMode'] : 'light' ?>" data-sidebar-size="lg" data-layout-mode="<?= isset($_SESSION['darkMode']) ? $_SESSION['darkMode'] : 'light' ?>">
+<html lang="tr" data-layout="semibox"
+      data-layout-style="default" data-sidebar="light" data-topbar="dark" data-sidebar-size="lg" data-sidebar-image="none"
+      data-preloader="disable" data-bs-theme="light" data-layout-width="fluid" data-layout-position="fixed" data-sidebar-visibility="show">
 
 <head>
-	<?php $this->load->view("{$viewFolder}/viewLibrary/style"); ?>
-	<?php $this->load->view("includes/head"); ?>
-
+    <?php $this->load->view("includes/head"); ?>
+    <?php $this->load->view("includes/include_style"); ?>
 </head>
 
 <body>
@@ -26,31 +27,10 @@
 	</header>
 	<!-- ========== App Menu ========== -->
 	<div class="app-menu navbar-menu">
-		<!-- LOGO -->
-		<?php $this->load->view("includes/navbar"); ?>
-		<?php $this->load->view("includes/scrollbar"); ?>
+		<?php $this->load->view("includes/appmenu"); ?>
 	</div>
-	<!-- Left Sidebar End -->
-	<!-- Vertical Overlay-->
+
 	<div class="vertical-overlay"></div>
-
-
-	<div class="main-content">
-
-		<div class="page-content">
-			<div class="container-fluid">
-
-				<?php $this->load->view("{$viewFolder}/content"); ?>
-
-			</div>
-			<!-- container-fluid -->
-		</div>
-		<!-- End Page-content -->
-
-		<?php $this->load->view("includes/footer"); ?>
-
-	</div>
-	<!-- end main content-->
 
 </div>
 <!-- END layout-wrapper -->
@@ -61,16 +41,8 @@
 <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
 	<i class="ri-arrow-up-line"></i>
 </button>
-<!--end back-to-top-->
-
-
-<!-- Theme Settings -->
-<?php $this->load->view("includes/themesettings"); ?>
-
 
 <?php $this->load->view("includes/include_script"); ?>
-
-<?php $this->load->view("{$viewFolder}/viewLibrary/script"); ?>
 
 
 </body>

@@ -1,0 +1,6 @@
+.idea/
+resources/
+/assets/
+/assets_eski/
+*.log
+.env

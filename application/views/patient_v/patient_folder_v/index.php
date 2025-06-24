@@ -6,12 +6,19 @@
  */
 ?>
 <!doctype html>
-<html lang="tr" data-layout="vertical" data-topbar="light" data-sidebar="light" data-sidebar-size="lg">
+<html lang="tr" data-layout="semibox"
+      data-layout-style="default" data-sidebar="light" data-topbar="dark" data-sidebar-size="lg" data-sidebar-image="none"
+      data-preloader="disable" data-bs-theme="light" data-layout-width="fluid" data-layout-position="fixed" data-sidebar-visibility="show">
+
 
 <head>
+
+    <link rel="stylesheet" href="<?=base_url() ?>/assets/css/select2.min.css" type="text/css" />
+    <link rel="stylesheet" href="<?=base_url() ?>/assets/css/dropzone.min.css" type="text/css" />
+
     <?php $this->load->view("includes/head"); ?>
     <?php $this->load->view("{$viewFolder}/{$subViewFolder}/viewLibrary/style"); ?>
-
+    <?php $this->load->view("includes/include_style"); ?>
 </head>
 
 <body>
@@ -25,30 +32,14 @@
     <!-- ========== App Menu ========== -->
     <div class="app-menu navbar-menu">
         <!-- LOGO -->
-        <?php $this->load->view("includes/navbar"); ?>
-        <?php $this->load->view("includes/scrollbar"); ?>
+          
+           <?php $this->load->view("includes/appmenu"); ?>
     </div>
     <!-- Left Sidebar End -->
     <!-- Vertical Overlay-->
     <div class="vertical-overlay"></div>
 
-
-    <div class="main-content">
-
-        <div class="page-content">
-            <div class="container-fluid">
-
-                <?php $this->load->view("{$viewFolder}/{$subViewFolder}/content"); ?>
-
-            </div>
-            <!-- container-fluid -->
-        </div>
-        <!-- End Page-content -->
-
-        <?php $this->load->view("includes/footer"); ?>
-
-    </div>
-    <!-- end main content-->
+    <?php $this->load->view("{$viewFolder}/{$subViewFolder}/content"); ?>
 
 </div>
 <!-- END layout-wrapper -->
@@ -63,7 +54,6 @@
 
 
 <!-- Theme Settings -->
-<?php $this->load->view("includes/themesettings"); ?>
 
 <?php $this->load->view("{$viewFolder}/{$subViewFolder}/treatment_update_modal"); ?>
 <?php $this->load->view("{$viewFolder}/{$subViewFolder}/income_update_modal"); ?>

@@ -20,6 +20,7 @@ class Home extends CI_Controller
         $viewData = new stdClass();
         $viewData->viewFolder = "home_v";
 
+
         $this->load->view("{$viewData->viewFolder}/index", $viewData);
 
     }
