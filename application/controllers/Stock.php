@@ -40,7 +40,7 @@ class Stock extends CI_Controller
             array()
         );
 
-        $viewData->categoryData = $this->general_model->get_all(
+        $viewData->categoryData = $this->General_model->get_all(
             'stock_parent_category',
             array()
         );
@@ -74,7 +74,7 @@ class Stock extends CI_Controller
                 "type"  => "success"
             );
             $this->session->set_flashdata("alert", $alert);
-            redirect(base_url("Doctor"));
+            redirect(base_url("Stock"));
         }else{
             $alert = array(
                 "title" => "Hata ile karşılaşıldı",
@@ -82,7 +82,7 @@ class Stock extends CI_Controller
                 "type"  => "error"
             );
             $this->session->set_flashdata("alert", $alert);
-            redirect(base_url("Doctor"));
+            redirect(base_url("Stock"));
         }
 
     }
@@ -99,7 +99,7 @@ class Stock extends CI_Controller
             array("uniq_id" => $uniq_id)
         );
 
-        $viewData->categoryData = $this->general_model->get_all(
+        $viewData->categoryData = $this->General_model->get_all(
             'stock_parent_category',
             array()
         );
@@ -133,7 +133,7 @@ class Stock extends CI_Controller
                 "type"  => "success"
             );
             $this->session->set_flashdata("alert", $alert);
-            redirect(base_url("Doctor"));
+            redirect(base_url("Stock"));
         }else{
             $alert = array(
                 "title" => "Hata ile karşılaşıldı",
@@ -141,7 +141,7 @@ class Stock extends CI_Controller
                 "type"  => "error"
             );
             $this->session->set_flashdata("alert", $alert);
-            redirect(base_url("Doctor"));
+            redirect(base_url("Stock"));
         }
     }
 
@@ -161,7 +161,7 @@ class Stock extends CI_Controller
                 "type"  => "success"
             );
             $this->session->set_flashdata("alert", $alert);
-            redirect(base_url("Doctor"));
+            redirect(base_url("Stock"));
         }else{
             $alert = array(
                 "title" => "Hata ile karşılaşıldı",
@@ -169,7 +169,7 @@ class Stock extends CI_Controller
                 "type"  => "error"
             );
             $this->session->set_flashdata("alert", $alert);
-            redirect(base_url("Doctor"));
+            redirect(base_url("Stock"));
         }
 
     }

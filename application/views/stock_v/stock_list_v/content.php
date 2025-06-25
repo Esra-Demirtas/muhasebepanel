@@ -67,7 +67,34 @@
                                                 <td><?= $item->item_name ?></td>
                                                 <td><?= $item->stock_parent_category_id ?></td>
                                                 <td><?= $item->stock_sub_category_id ?></td>
-                                                <td><?= $item->unit ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($item->unit == 1) {
+                                                        echo "Adet";
+                                                    } elseif ($item->unit == 2) {
+                                                        echo "Kutu";
+                                                    } elseif ($item->unit == 3) {
+                                                        echo "Mililitre (ml)";
+                                                    } elseif ($item->unit == 4) {
+                                                        echo "Gram (gr)";
+                                                    } elseif ($item->unit == 5) {
+                                                        echo "Şişe";
+                                                    } elseif ($item->unit == 6) {
+                                                        echo "Rulo";
+                                                    } elseif ($item->unit == 7) {
+                                                        echo "Paket";
+                                                    } elseif ($item->unit == 8) {
+                                                        echo "CC";
+                                                    } elseif ($item->unit == 9) {
+                                                        echo "Set";
+                                                    } elseif ($item->unit == 10) {
+                                                        echo "Ampul";
+                                                    } else {
+                                                        echo "Bilinmiyor";
+                                                    }
+                                                    ?>
+                                                </td>
+
                                                 <td><?= $item->stock_quantity ?></td>
                                                 <td><?= $item->critical_level ?></td>
                                                 <td>
