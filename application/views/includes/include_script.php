@@ -13,6 +13,7 @@
 <script src="<?=base_url();?>assets/libs/feather-icons/feather.min.js"></script>
 <script src="<?=base_url();?>assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
 <script src="<?=base_url();?>assets/js/app.js"></script>
+<script src="<?=base_url(); ?>assets/js/deletebtn.js"></script>
 
 <script src="<?=base_url();?>assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
 
