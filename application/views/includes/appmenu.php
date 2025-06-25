@@ -71,6 +71,15 @@ $user = $this->session->userdata('user');
                     <i class="ri-stethoscope-line"></i> <span data-key="t-landing">Doktor Listesi</span>
                 </a>
             </li>
+
+            <!-- Stok Yönetimi -->
+            <li class="menu-title"><span data-key="t-menu">STOK YÖNETİMİ</span></li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-link" href="<?=base_url("stock") ?>">
+                    <i class="ri-stethoscope-line"></i> <span data-key="t-landing">Stok Listesi</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
