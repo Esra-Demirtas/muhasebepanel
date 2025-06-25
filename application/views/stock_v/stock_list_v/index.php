@@ -1,8 +1,8 @@
 <?php
 /**
  * Created by Esra DEMİRTAŞ.
- * Date: 14.06.2025
- * Time: 18:40
+ * Date: 25.06.2025
+ * Time: 21:28
  */
 ?>
 
@@ -28,7 +28,7 @@
     </header>
     <!-- ========== App Menu ========== -->
     <div class="app-menu navbar-menu">
-           <?php $this->load->view("includes/appmenu"); ?>
+        <?php $this->load->view("includes/appmenu"); ?>
     </div>
     <!-- Left Sidebar End -->
     <!-- Vertical Overlay-->
