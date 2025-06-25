@@ -40,31 +40,38 @@ $user = $this->session->userdata('user');
 
         <ul class="navbar-nav" id="navbar-nav">
             <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+
+            <!-- Anasayfa -->
             <li class="nav-item">
                 <a class="nav-link menu-link" href="<?=base_url(); ?>">
-                    <i class="ri-home-heart-line"></i> <span data-key="t-landing">Anasayfa</span>
+                    <i class="ri-home-4-line"></i> <span data-key="t-landing">Anasayfa</span>
                 </a>
             </li>
 
+            <!-- Hasta Yönetimi -->
             <li class="menu-title"><span data-key="t-menu">HASTA YÖNETİMİ</span></li>
+
             <li class="nav-item">
                 <a class="nav-link menu-link" href="<?=base_url("patient") ?>">
-                    <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Hasta Listesi</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link menu-link" href="<?=base_url("family") ?>">
-                    <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Aile Listesi</span>
-                </a>
-            </li>
-            <li class="menu-title"><span data-key="t-menu">DOKTOR YÖNETİMİ</span></li>
-            <li class="nav-item">
-                <a class="nav-link menu-link" href="<?=base_url("doctor") ?>">
-                    <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Doktor Listesi</span>
+                    <i class="ri-user-heart-line"></i> <span data-key="t-landing">Hasta Listesi</span>
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link menu-link" href="<?=base_url("family") ?>">
+                    <i class="ri-group-line"></i> <span data-key="t-landing">Aile Listesi</span>
+                </a>
+            </li>
+
+            <!-- Doktor Yönetimi -->
+            <li class="menu-title"><span data-key="t-menu">DOKTOR YÖNETİMİ</span></li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-link" href="<?=base_url("doctor") ?>">
+                    <i class="ri-stethoscope-line"></i> <span data-key="t-landing">Doktor Listesi</span>
+                </a>
+            </li>
         </ul>
     </div>
-    <!-- Sidebar -->
 </div>
+

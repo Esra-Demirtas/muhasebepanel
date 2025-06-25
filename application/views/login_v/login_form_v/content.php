@@ -15,10 +15,7 @@
                 <div class="col-lg-12">
                     <div class="card overflow-hidden">
                         <div class="row g-0">
-                            <div class="col-lg-6">
-                                <div class="p-lg-5 p-4 auth-one-bg h-100">
-                                </div>
-                            </div>
+                            <div class="col-lg-6 p-lg-5 p-4" style="background-image: url('<?= base_url() ?>assets/images/landing/login-image3.png'); background-repeat: no-repeat;"></div>
                             <!-- end col -->
 
                             <div class="col-lg-6">
@@ -59,7 +56,7 @@
                                             </div>
 
                                             <div class="mt-4">
-                                                <button class="btn btn-dark w-100" type="submit">Giriş Yap</button>
+                                                <button class="btn w-100" style="background-color: #6A4C9C; color: white;" type="submit">Giriş Yap</button>
                                             </div>
 
 
@@ -92,7 +89,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script>.Sistemi İnşaa Eden ve Geliştiren Esra DEMİRTAŞ <i class="mdi mdi-heart text-danger"></i>
+                        <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script>. GÜLERYÜZ Muhasebe Panelini İnşaa Eden ve Geliştiren Esra DEMİRTAŞ
                     </div>
                 </div>
             </div>
