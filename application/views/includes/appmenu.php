@@ -87,6 +87,31 @@ $user = $this->session->userdata('user');
                 </a>
             </li>
 
+            <li class="menu-title"><span data-key="t-menu">GELİR - GİDER YÖNETİMİ</span></li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-link" href="<?= base_url("income") ?>">
+                    <i class="ri-hand-coin-line"></i>
+                    <span data-key="t-landing">Gelir Listesi</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-link" href="<?= base_url("expense") ?>">
+                    <i class="ri-coins-line"></i>
+                    <span data-key="t-landing">Gider Listesi</span>
+                </a>
+            </li>
+
+            <li class="menu-title"><span data-key="t-menu">AYARLAR</span></li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-link" href="<?= base_url("personal") ?>">
+                    <i class="ri-team-line"></i>
+                    <span data-key="t-landing">Personel Listesi</span>
+                </a>
+            </li>
+
         </ul>
     </div>
 </div>

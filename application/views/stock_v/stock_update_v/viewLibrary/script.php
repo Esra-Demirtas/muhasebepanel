@@ -56,7 +56,7 @@
 
         $('#stock_parent_category_id').on('change', function () {
             var selectedParentId = $(this).val();
-            $('#stock_sub_category_id').removeAttr('data-subcategory'); 
+            $('#stock_sub_category_id').removeAttr('data-subcategory');
             getSubCategories(selectedParentId);
         });
     });
