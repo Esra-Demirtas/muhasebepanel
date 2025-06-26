@@ -109,7 +109,6 @@ class StockCategory extends CI_Controller {
             array('uniq_id' => $uniq_id),
             array(
                 "category_name" => strip_tags(trim($this->input->post("category_name"))),
-                "category_msg" =>  strip_tags(trim($this->input->post("category_msg"))),
             )
         );
 
