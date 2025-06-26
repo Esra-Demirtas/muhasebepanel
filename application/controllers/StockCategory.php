@@ -142,13 +142,6 @@ class StockCategory extends CI_Controller {
             array("uniq_id" => $uniq_id)
         );
 
-
-        /** Yardım kılavuzu yönlendirmeleri */
-        $viewData->guideDatas = $this->General_model->get_all(
-            'guide_table',
-            array()
-        );
-
         $viewData->users = $this->General_model->get_all(
             'users_table',
             array('isActivity' => 1)
@@ -200,13 +193,6 @@ class StockCategory extends CI_Controller {
 
         $this->load->model('General_model');
         $this->load->helper('string');
-
-        $selectGuide = $this->input->post("guideTitle");
-        $guides = '';
-        if (!empty($selectGuide)) {
-            $guideString = implode(", ", $selectGuide);
-            $guides =  $guideString;
-        }
 
         $newCategoryInsert = $this->General_model->add(
             'stock_sub_category',
