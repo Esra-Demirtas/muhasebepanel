@@ -6,6 +6,7 @@ class Stock extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('stock');
         $this->load->model('General_model');
 
         if (!$this->session->userdata('users_info')){

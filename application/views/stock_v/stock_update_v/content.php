@@ -61,14 +61,25 @@
 
                                 <div class="col-md-6">
                                     <label for="stock_parent_category_id" class="form-label">Kategori</label>
-                                    <input type="number" class="form-control" name="stock_parent_category_id" id="stock_parent_category_id"
-                                           value="<?= htmlspecialchars($stockData->stock_parent_category_id) ?>">
+                                    <select id="stock_parent_category_id" name="stock_parent_category_id" class="form-select select2" data-registerbranchid="<?= $stockData->stock_parent_category_id; ?>">
+                                        <option value="" disabled selected>Seçiniz</option>
+                                        <?php foreach ($categoryData as $item) { ?>
+                                            <option value="<?= $item->uniq_id; ?>" <?= ($item->uniq_id == $stockData->stock_parent_category_id) ? 'selected' : ''; ?>>
+                                                <?= $item->category_name; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="stock_sub_category_id" class="form-label">Alt Kategori</label>
-                                    <input type="number" class="form-control" name="stock_sub_category_id" id="stock_sub_category_id"
-                                           value="<?= htmlspecialchars($stockData->stock_sub_category_id) ?>">
+                                    <select
+                                            name="stock_sub_category_id"
+                                            class="form-select select2"
+                                            id="stock_sub_category_id"
+                                            data-subcategory="<?php echo $stockData->stock_sub_category_id; ?>">
+                                        <option value="0" selected>--Diğer--</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-4">

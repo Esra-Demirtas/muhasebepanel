@@ -65,8 +65,8 @@
                                                 <td><?= $item->uniq_id ?></td>
                                                 <td><?= $item->barcode ?></td>
                                                 <td><?= $item->item_name ?></td>
-                                                <td><?= $item->stock_parent_category_id ?></td>
-                                                <td><?= $item->stock_sub_category_id ?></td>
+                                                <td><?= parentCategoryDataGet($item->stock_parent_category_id) ?></td>
+                                                <td><?= subCategoryDataGet($item->stock_sub_category_id) ?></td>
                                                 <td>
                                                     <?php
                                                     if ($item->unit == 1) {

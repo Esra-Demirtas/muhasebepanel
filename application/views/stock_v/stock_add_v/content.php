@@ -59,40 +59,49 @@
 
                                 <div class="col-md-6">
                                     <label for="stock_parent_category_id" class="form-label">Kategori</label>
-                                    <input type="number" step="0.01" class="form-control" name="stock_parent_category_id" id="stock_parent_category_id" value="<?= isset($item) ? $item->stock_parent_category_id : '' ?>">
+                                    <select id="stock_parent_category_id" name="stock_parent_category_id" class="form-select select2">
+                                        <option value="" disabled selected>Seçiniz</option>
+                                        <?php foreach ($categoryData as $item) { ?>
+                                            <option value="<?= $item->uniq_id; ?>" <?= isset($stockData->stock_parent_category) && $stockData->stock_parent_category == $item->uniq_id ? 'selected' : ''; ?>><?= $item->category_name; ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="stock_sub_category_id" class="form-label">Alt Kategori</label>
-                                    <input type="number" step="0.01" class="form-control" name="stock_sub_category_id" id="stock_sub_category_id" value="<?= isset($item) ? $item->stock_sub_category_id : '' ?>">
+                                    <select name="stock_sub_category_id" class="form-select select2" id="stock_sub_category_id">
+                                        <option value="0" selected>--Diğer--</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="unit" class="form-label">Ürün Birimi</label>
                                     <select name="unit" id="unit" class="form-control">
                                         <option value="">Seçiniz</option>
-                                        <option value="1" <?= (isset($item) && $item->unit == 1) ? 'selected' : '' ?>>Adet</option>
-                                        <option value="2" <?= (isset($item) && $item->unit == 2) ? 'selected' : '' ?>>Kutu</option>
-                                        <option value="3" <?= (isset($item) && $item->unit == 3) ? 'selected' : '' ?>>Mililitre (ml)</option>
-                                        <option value="4" <?= (isset($item) && $item->unit == 4) ? 'selected' : '' ?>>Gram (gr)</option>
-                                        <option value="5" <?= (isset($item) && $item->unit == 5) ? 'selected' : '' ?>>Şişe</option>
-                                        <option value="6" <?= (isset($item) && $item->unit == 6) ? 'selected' : '' ?>>Rulo</option>
-                                        <option value="7" <?= (isset($item) && $item->unit == 7) ? 'selected' : '' ?>>Paket</option>
-                                        <option value="8" <?= (isset($item) && $item->unit == 8) ? 'selected' : '' ?>>CC</option>
-                                        <option value="9" <?= (isset($item) && $item->unit == 9) ? 'selected' : '' ?>>Set</option>
-                                        <option value="10" <?= (isset($item) && $item->unit == 10) ? 'selected' : '' ?>>Ampul</option>
+                                        <option value="1" <?= ($item->unit ?? '') == 1 ? 'selected' : '' ?>>Adet</option>
+                                        <option value="2" <?= ($item->unit ?? '') == 2 ? 'selected' : '' ?>>Kutu</option>
+                                        <option value="3" <?= ($item->unit ?? '') == 3 ? 'selected' : '' ?>>Mililitre (ml)</option>
+                                        <option value="4" <?= ($item->unit ?? '') == 4 ? 'selected' : '' ?>>Gram (gr)</option>
+                                        <option value="5" <?= ($item->unit ?? '') == 5 ? 'selected' : '' ?>>Şişe</option>
+                                        <option value="6" <?= ($item->unit ?? '') == 6 ? 'selected' : '' ?>>Rulo</option>
+                                        <option value="7" <?= ($item->unit ?? '') == 7 ? 'selected' : '' ?>>Paket</option>
+                                        <option value="8" <?= ($item->unit ?? '') == 8 ? 'selected' : '' ?>>CC</option>
+                                        <option value="9" <?= ($item->unit ?? '') == 9 ? 'selected' : '' ?>>Set</option>
+                                        <option value="10" <?= ($item->unit ?? '') == 10 ? 'selected' : '' ?>>Ampul</option>
                                     </select>
                                 </div>
 
 
                                 <div class="col-md-4">
                                     <label for="stock_quantity" class="form-label">Stok Miktarı</label>
-                                    <input type="number" class="form-control" name="stock_quantity" id="stock_quantity" value="<?= isset($item) ? $item->stock_quantity : '' ?>" min="0">
+                                    <input type="number" class="form-control" name="stock_quantity" id="stock_quantity" value="<?= isset($item->stock_quantity) ? $item->stock_quantity : '' ?>"
+                                           min="0">
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="critical_level" class="form-label">Kritik Stok Seviyesi</label>
-                                    <input type="number" class="form-control" name="critical_level" id="critical_level" value="<?= isset($item) ? $item->critical_level : '' ?>" min="0">
+                                    <input type="number" class="form-control" name="critical_level" id="critical_level" value="<?= isset($item->critical_level) ? $item->critical_level : '' ?>"
+                                           min="0">
                                 </div>
 
                                 <div class="col-12 text-end mt-3">
