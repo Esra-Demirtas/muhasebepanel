@@ -5,7 +5,7 @@ class StockCategory extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper('Stock');
+        //$this->load->helper('Stock');
         $this->load->model('General_model');
 
         if (!$this->session->userdata('users_info')){
@@ -15,14 +15,19 @@ class StockCategory extends CI_Controller {
         date_default_timezone_set('Europe/Istanbul');
     }
 
+    public function index()
+    {
+        $this->categories();
+    }
+
     public function categories()
     {
         $viewData = new stdClass();
         $viewData->viewFolder = "stock_category_v";
         $viewData->subViewFolder = "stock_categories_list";
-        $this->load->model('general_model');
+        $this->load->model('General_model');
 
-        $viewData->categorysData = $this->general_model->get_all(
+        $viewData->categorysData = $this->General_model->get_all(
             'stock_parent_category',
            array()
         );
@@ -34,9 +39,9 @@ class StockCategory extends CI_Controller {
         $viewData = new stdClass();
         $viewData->viewFolder = "stock_category_v";
         $viewData->subViewFolder = "new_category";
-        $this->load->model('general_model');
+        $this->load->model('General_model');
 
-        $viewData->parentData = $this->general_model->get(
+        $viewData->parentData = $this->General_model->get(
             'stock_parent_category',
             array()
         );
@@ -47,8 +52,8 @@ class StockCategory extends CI_Controller {
 
     public function newCategoryForm(){
         $this->load->helper('string');
-        $this->load->model('general_model');
-        $insert = $this->general_model->add(
+        $this->load->model('General_model');
+        $insert = $this->General_model->add(
             'stock_parent_category',
             array(
                 "uniq_id" => random_string('nozero','7'),
@@ -80,14 +85,14 @@ class StockCategory extends CI_Controller {
         $viewData = new stdClass();
         $viewData->viewFolder = "stock_category_v";
         $viewData->subViewFolder = "update_category";
-        $this->load->model('general_model');
+        $this->load->model('General_model');
 
-        $viewData->categoryData = $this->general_model->get(
+        $viewData->categoryData = $this->General_model->get(
             'stock_parent_category',
             array("uniq_id" => $uniq_id)
         );
 
-        $viewData->users = $this->general_model->get_all(
+        $viewData->users = $this->General_model->get_all(
             'users_table',
             array('isActivity' => 1)
         );
@@ -97,9 +102,9 @@ class StockCategory extends CI_Controller {
 
     public function categoryUpdateForm($uniq_id)
     {
-        $this->load->model('general_model');
+        $this->load->model('General_model');
 
-        $categoryUpdate = $this->general_model->update(
+        $categoryUpdate = $this->General_model->update(
             'stock_parent_category',
             array('uniq_id' => $uniq_id),
             array(
@@ -131,21 +136,21 @@ class StockCategory extends CI_Controller {
         $viewData = new stdClass();
         $viewData->viewFolder = "stock_category_v";
         $viewData->subViewFolder = "new_sub_category";
-        $this->load->model('general_model');
+        $this->load->model('General_model');
 
-        $viewData->parentData = $this->general_model->get(
+        $viewData->parentData = $this->General_model->get(
             'stock_parent_category',
             array("uniq_id" => $uniq_id)
         );
 
 
         /** Yardım kılavuzu yönlendirmeleri */
-        $viewData->guideDatas = $this->general_model->get_all(
+        $viewData->guideDatas = $this->General_model->get_all(
             'guide_table',
             array()
         );
 
-        $viewData->users = $this->general_model->get_all(
+        $viewData->users = $this->General_model->get_all(
             'users_table',
             array('isActivity' => 1)
         );
@@ -161,13 +166,13 @@ class StockCategory extends CI_Controller {
         $viewData = new stdClass();
         $viewData->viewFolder = "stock_category_v";
         $viewData->subViewFolder = "stock_sub_categories_list";
-        $this->load->model('general_model');
+        $this->load->model('General_model');
 
-        $viewData->parentData = $this->general_model->get(
+        $viewData->parentData = $this->General_model->get(
             'stock_parent_category',
             array("uniq_id" => $uniq_id)
         );
-        $viewData->subCategoryData = $this->general_model->get_all(
+        $viewData->subCategoryData = $this->General_model->get_all(
             'stock_sub_category',
             array("parent_id" => $uniq_id)
         );
@@ -178,8 +183,8 @@ class StockCategory extends CI_Controller {
     public function getSubCategoryList()
     {
         $uniq_id = $this->input->post('uniq_id');
-        $this->load->model('general_model');
-        $data = $this->general_model->get_all(
+        $this->load->model('General_model');
+        $data = $this->General_model->get_all(
             'stock_sub_category',
             array(
                 'parent_id' => $uniq_id
@@ -194,7 +199,7 @@ class StockCategory extends CI_Controller {
 
     public function newSubCategoryForm($uniq_id){
 
-        $this->load->model('general_model');
+        $this->load->model('General_model');
         $this->load->helper('string');
 
         $selectGuide = $this->input->post("guideTitle");
@@ -204,7 +209,7 @@ class StockCategory extends CI_Controller {
             $guides =  $guideString;
         }
 
-        $newCategoryInsert = $this->general_model->add(
+        $newCategoryInsert = $this->General_model->add(
             'stock_sub_category',
             array(
                 "uniq_id" => random_string('nozero',5),
@@ -237,9 +242,9 @@ class StockCategory extends CI_Controller {
         $viewData = new stdClass();
         $viewData->viewFolder = "stock_category_v";
         $viewData->subViewFolder = "update_sub_category";
-        $this->load->model('general_model');
+        $this->load->model('General_model');
 
-        $viewData->subCategoryData = $this->general_model->get(
+        $viewData->subCategoryData = $this->General_model->get(
             'stock_sub_category',
             array("uniq_id" => $uniq_id)
         );
@@ -249,9 +254,9 @@ class StockCategory extends CI_Controller {
 
     public function subCategoryUpdateForm($uniq_id,$parent_id)
     {
-        $this->load->model('general_model');
+        $this->load->model('General_model');
 
-        $newCategoryInsert = $this->general_model->update(
+        $newCategoryInsert = $this->General_model->update(
             'stock_sub_category',
             array('uniq_id' => $uniq_id),
             array(
@@ -280,8 +285,8 @@ class StockCategory extends CI_Controller {
 
     public function stockDeleteCategorys($uniq_id)
     {
-        $this->load->model('general_model');
-        $parentData = $this->general_model->get(
+        $this->load->model('General_model');
+        $parentData = $this->General_model->get(
             'stock_parent_category',
             array(
                 "uniq_id" => $uniq_id
@@ -289,7 +294,7 @@ class StockCategory extends CI_Controller {
         );
 
         /** Önce alt kategori kontrolü */
-        $parentSubData = $this->general_model->get_all(
+        $parentSubData = $this->General_model->get_all(
             'stock_sub_category',
             array(
                 "parent_id" => $uniq_id
@@ -298,7 +303,7 @@ class StockCategory extends CI_Controller {
         /** Alt Kategorilerin silinmesi  */
         if($parentSubData){
             foreach ($parentSubData as $item){
-                $parentSubData = $this->general_model->delete(
+                $parentSubData = $this->General_model->delete(
                     'stock_sub_category',
                     array(
                         "uniq_id" => $item->uniq_id
@@ -309,7 +314,7 @@ class StockCategory extends CI_Controller {
 
         /** Ana Kategorinin Silinmesi */
 
-        $delete = $this->general_model->delete(
+        $delete = $this->General_model->delete(
             'stock_parent_category',
             array(
                 "uniq_id" => $uniq_id
@@ -337,11 +342,11 @@ class StockCategory extends CI_Controller {
 
     public function stockDeleteSubCategory($uniq_id,$parent_id)
     {
-        $this->load->model('general_model');
+        $this->load->model('General_model');
 
         /** Ana Kategorinin Silinmesi */
 
-        $delete = $this->general_model->delete(
+        $delete = $this->General_model->delete(
             'stock_sub_category',
             array(
                 "uniq_id" => $uniq_id

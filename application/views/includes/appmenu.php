@@ -77,9 +77,16 @@ $user = $this->session->userdata('user');
 
             <li class="nav-item">
                 <a class="nav-link menu-link" href="<?=base_url("stock") ?>">
-                    <i class="ri-stethoscope-line"></i> <span data-key="t-landing">Stok Listesi</span>
+                    <i class="ri-stack-line"></i> <span data-key="t-landing">Stok Listesi</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-link" href="<?=base_url("stockCategory") ?>">
+                    <i class="ri-list-check-2"></i> <span data-key="t-landing">Stok Kategori Listesi</span>
+                </a>
+            </li>
+
         </ul>
     </div>
 </div>
