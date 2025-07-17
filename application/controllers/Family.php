@@ -41,11 +41,9 @@ class Family extends CI_Controller
         $viewData->viewFolder = "family_v";
         $viewData->subViewFolder = "family_folder_v";
 
-        $this->load->model('General_model');
-
         $viewData->familyData = $this->General_model->get(
             'family_table',
-            array("uniq_id" => $family_id),'id DESC'
+            array("uniq_id" => $family_id)
         );
 
         $viewData->patientData = $this->General_model->get_all(
@@ -53,9 +51,34 @@ class Family extends CI_Controller
             array("family_id" => $family_id)
         );
 
+        $patientUniqIds = array();
+        $viewData->indexedPatientData = array();
+
+        if (!empty($viewData->patientData)) {
+            foreach ($viewData->patientData as $patient) {
+                $patientUniqIds[] = $patient->uniq_id;
+                $viewData->indexedPatientData[$patient->uniq_id] = $patient;
+            }
+        }
+
+        if (!empty($patientUniqIds)) {
+            $_allTreatments = $this->General_model->get_all('treatment_table', array());
+
+            $filteredTreatments = array();
+            foreach ($_allTreatments as $treatment) {
+                if (in_array($treatment->patient_id, $patientUniqIds)) {
+                    $filteredTreatments[] = $treatment;
+                }
+            }
+            $viewData->treatmentData = $filteredTreatments;
+
+        } else {
+            $viewData->treatmentData = array();
+        }
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
+
 
     public function add(){
         $viewData = new stdClass();

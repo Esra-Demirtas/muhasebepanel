@@ -17,13 +17,6 @@
                         <div class="card-header border">
                             <div class="d-flex align-items-center justify-content-between">
                                 <h5 class="card-title mb-0">Aileye Bağlı Hasta Listesi</h5>
-                                <div class="d-flex gap-2">
-                                    <a href="<?php echo base_url("family/debitForm/$familyData->uniq_id") ?>"
-                                       class="btn btn-success btn-label waves-effect waves-light">
-                                        <i class="ri-printer-line label-icon align-middle fs-16 me-2"></i>
-                                        Aileye Bağlı Hasta Borç Formu Oluştur
-                                    </a>
-                                </div>
                             </div>
                         </div>
 
@@ -35,33 +28,50 @@
                                     <th scope="col">Hasta No</th>
                                     <th scope="col">Hasta Adı</th>
                                     <th scope="col">Tc No</th>
-                                    <th scope="col">Uygulanan Tedavi</th>
-                                    <th scope="col">Tedavi Ücreti</th>
-                                    <th scope="col">Ödenme Durumu</th>
+                                    <th scope="col">Yaşı</th>
+                                    <th scope="col">Cinsiyeti</th>
+                                    <th scope="col">Telefon Numarası</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php if (!empty($patientData)) : ?>
                                     <?php foreach ($patientData as $item) : ?>
+                                        <?php
+                                        if (!empty($item->birth_date) && $item->birth_date !== '0000-00-00') {
+                                            $birthDate = new DateTime($item->birth_date);
+                                            $today = new DateTime();
+                                            $age = $today->diff($birthDate)->y;
+                                        } else {
+                                            $age = 'Bilinmiyor';
+                                        }
+
+                                        if ($item->gender === '1' || $item->gender === 1) {
+                                            $genderText = 'Kadın';
+                                        } elseif ($item->gender === '0' || $item->gender === 0) {
+                                            $genderText = 'Erkek';
+                                        } else {
+                                            $genderText = 'Bilinmiyor';
+                                        }
+
+                                        $phone = (!empty($item->phone)) ? $item->phone : 'Bilinmiyor';
+                                        ?>
                                         <tr>
                                             <th scope="row">
-                                                <a href="<?= base_url("family/folder/$item->family_id") ?>">
+                                                <a href="<?= base_url("patient/folder/$item->uniq_id") ?>">
                                                     <?= $item->uniq_id ?>
                                                 </a>
                                             </th>
-                                            <td><?= $item->name . ' ' . $item->surname; ?></td>
-                                            <td><?= $item->identity_no; ?></td>
-                                            <td><?= $item->treatment_name ?? 'Bilgi Girilmedi'; ?></td>
-                                            <td><?= $item->treatment_price ?? 'Bilgi Girilmedi'; ?></td>
-                                            <td><?= $item->payment_status ?? 'Bilgi Girilmedi'; ?></td>
+                                            <td><?= htmlspecialchars($item->name . ' ' . $item->surname); ?></td>
+                                            <td><?= !empty($item->identity_no) ? htmlspecialchars($item->identity_no) : 'Bilinmiyor'; ?></td>
+                                            <td><?= $age; ?></td>
+                                            <td><?= $genderText; ?></td>
+                                            <td><?= htmlspecialchars($phone); ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php else : ?>
                                     <tr><td colspan="6">Bu aileye ait hasta bulunamadı.</td></tr>
                                 <?php endif; ?>
-
                                 </tbody>
-
                             </table>
                         </div>
 

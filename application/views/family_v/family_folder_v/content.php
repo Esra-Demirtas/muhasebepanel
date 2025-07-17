@@ -62,7 +62,7 @@
                                                             }
                                                             ?>
                                                             <div>
-                                                                <i class="ri-user-line align-bottom me-1"></i> Ana İletişim:
+                                                                <i class="ri-user-line align-bottom me-1"></i> Ailenin Bağlı Olduğu Kişi:
                                                                 <?php if ($main_contact_name !== 'Bilinmiyor') { ?>
                                                                     <a href="<?= base_url("patient/folder/{$familyData->main_contact_id}") ?>" class="fw-semibold text-primary">
                                                                         <?= $main_contact_name ?>
@@ -94,7 +94,11 @@
                                             Detay Dosyası
                                         </a>
                                     </li>
-                                    <!-- Diğer aileye özel sekmeler buraya eklenebilir -->
+                                    <li class="nav-item">
+                                        <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#paymenttab" role="tab">
+                                            Tedaviler
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -106,9 +110,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="tab-content text-muted">
-                        <div class="tab-pane fade show active" id="detailtab" role="tabpanel">
-                            <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/detail_tab"); ?>
-                        </div>
+                        <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/detail_tab"); ?>
+                        <?php $this->load->view("{$viewFolder}/{$subViewFolder}/tabview/payment_tab"); ?>
                     </div>
                 </div>
             </div>
