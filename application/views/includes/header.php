@@ -41,6 +41,23 @@ $user = $this->session->userdata('user');
                     </span>
             </button>
 
+            <!-- App Search-->
+            <form class="app-search d-none d-md-block">
+                <div class="position-relative">
+                    <input type="text" class="form-control" placeholder="Ara..." autocomplete="off" id="search-options" value="">
+                    <span class="mdi mdi-magnify search-widget-icon"></span>
+                    <span class="mdi mdi-close-circle search-widget-icon search-widget-icon-close d-none" id="search-close-options"></span>
+                </div>
+                <div class="dropdown-menu dropdown-menu-lg" id="search-dropdown">
+                    <div data-simplebar style="max-height: 320px;" id="search-results-container">
+                    </div>
+
+                    <!--<div class="text-center pt-3 pb-1">
+                        <a href="pages-search-results.html" class="btn btn-primary btn-sm">Tüm Sonuçları Görüntüle <i class="ri-arrow-right-line ms-1"></i></a>
+                    </div>-->
+                </div>
+            </form>
+
         </div>
 
         <div class="d-flex align-items-center">

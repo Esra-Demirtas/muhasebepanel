@@ -59,7 +59,7 @@ $user = $this->session->userdata('user');
 
             <li class="nav-item">
                 <a class="nav-link menu-link" href="<?=base_url("family") ?>">
-                    <i class="ri-group-line"></i> <span data-key="t-landing">Aile Listesi</span>
+                    <i class="ri-group-line"></i> <span data-key="t-landing">Referans Listesi</span>
                 </a>
             </li>
 
@@ -73,19 +73,19 @@ $user = $this->session->userdata('user');
             </li>
 
             <!-- Stok Yönetimi -->
-            <li class="menu-title"><span data-key="t-menu">STOK YÖNETİMİ</span></li>
+            <!--<li class="menu-title"><span data-key="t-menu">STOK YÖNETİMİ</span></li>
 
             <li class="nav-item">
-                <a class="nav-link menu-link" href="<?=base_url("stock") ?>">
+                <a class="nav-link menu-link" href="<?php /*=base_url("stock") */?>">
                     <i class="ri-stack-line"></i> <span data-key="t-landing">Stok Listesi</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menu-link" href="<?=base_url("stockCategory") ?>">
+                <a class="nav-link menu-link" href="<?php /*=base_url("stockCategory") */?>">
                     <i class="ri-list-check-2"></i> <span data-key="t-landing">Stok Kategori Listesi</span>
                 </a>
-            </li>
+            </li>-->
 
             <li class="menu-title"><span data-key="t-menu">GELİR - GİDER YÖNETİMİ</span></li>
 
